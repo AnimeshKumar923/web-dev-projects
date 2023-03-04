@@ -23,8 +23,33 @@
 }
 
 .intro-para{
-    background-color: white;
+    background-color: #faa1a1;
     color: black;
     font-size: 20px;
     text-align: center;
+}
+
+.ingredients{
+    background-color: #ffa358;
+    color: #000000d8;
+    font-size: 27px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.steps{
+    background-color: #44adf3;
+    color: #000000;
+    font-size: 27px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.conclusion{
+    background-color: #fd8d31;
+    color: #000000;
+    font-size: 50px;
+    text-align: center;
+    font-weight: bold;
+    font-style: italic;
 }
