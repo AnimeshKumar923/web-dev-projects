@@ -9,3 +9,5 @@ Credits:
 - <a href="https://he.wikipedia.org/wiki/%D7%A7%D7%95%D7%91%D7%A5:HZD_The_Frozen_Wilds_DLC_Soundtrack.jpg">Photo taken from Wikimedia</a>
 
 - <a href="https://wallpapers.com/wallpapers/horizon-forbidden-west-o0ahr4engreijcbk.html"> Forbidden West poster - from wallpapers.com</a>
+
+- <a href="https://upload.wikimedia.org/wikipedia/commons/6/66/Horizon_game_series_logo.png">Horizon logo taken from Wikipedia.org</a>
