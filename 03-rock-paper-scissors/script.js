@@ -46,6 +46,7 @@ function playRound(playerChoiceNum, computerChoiceNum){
         return (`It's a tie!`);
     } else if((playerChoiceNum === 1 && computerChoiceNum === 2)){
         isTie = false;
+        computerWinCount++;
         return (`Computer wins!`);
     } else if((playerChoiceNum === 1 && computerChoiceNum === 3)){
         isTie = false;
@@ -57,9 +58,11 @@ function playRound(playerChoiceNum, computerChoiceNum){
         return (`You win!`);
     } else if((playerChoiceNum === 2 && computerChoiceNum === 3)){
         isTie = false;
+        computerWinCount++;
         return (`Computer wins!`);
     } else if((playerChoiceNum === 3 && computerChoiceNum === 1)){
         isTie = false;
+        computerWinCount++;
         return (`Computer wins!`);
     } else if((playerChoiceNum === 3 && computerChoiceNum === 2)){
         isTie = false;
@@ -89,7 +92,7 @@ function getRandom(min, max) {
     return randomWithinRange;
 }
 
-function game(computerWinCount, playerWinCount){
+function game(){
 
     for(i=0; i<5; i++){
         playerChoiceNum = playerChoice();
@@ -100,13 +103,11 @@ function game(computerWinCount, playerWinCount){
 
     if(playerWinCount>computerWinCount){
         console.log(`Player: ${playerWinCount} Computer: ${computerWinCount}`);
-        console.log(`Player wins the round!`);
+        console.log(`You won the round!`);
     } else if(playerWinCount<computerWinCount){
         console.log(`Player: ${playerWinCount} Computer: ${computerWinCount}`);
-        console.log(`Computer wins the round!`);
+        console.log(`Computer won the round!`);
     }
 }
 
 game(computerWinCount, playerWinCount);
-
-console.log(`Player: ${playerWinCount} Computer: ${computerWinCount}`);
