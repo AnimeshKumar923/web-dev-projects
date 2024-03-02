@@ -94,12 +94,12 @@ function getRandom(min, max) {
 
 function game(){
 
-    for(i=0; i<5; i++){
-        playerChoiceNum = playerChoice();
-        computerChoiceNum = getComputerChoice();
-        result = playRound(playerChoiceNum, computerChoiceNum);
-        console.log(result);
-    }
+    // for(i=0; i<5; i++){
+    //     playerChoiceNum = playerChoice();
+    //     computerChoiceNum = getComputerChoice();
+    //     result = playRound(playerChoiceNum, computerChoiceNum);
+    //     console.log(result);
+    // }
 
     if(playerWinCount>computerWinCount){
         console.log(`Player: ${playerWinCount} Computer: ${computerWinCount}`);
@@ -111,3 +111,30 @@ function game(){
 }
 
 game(computerWinCount, playerWinCount);
+
+
+// DOM Section
+
+// the three buttons
+const buttonsClass = document.querySelector('.buttons');
+
+const rockBtn = document.createElement('button');
+rockBtn.classList.add('rock');
+rockBtn.textContent = 'Rock'
+
+const paperBtn = document.createElement('button');
+paperBtn.classList.add('paper');
+paperBtn.textContent = 'Paper'
+
+const scissorBtn = document.createElement('button');
+scissorBtn.classList.add('scissor');
+scissorBtn.textContent = 'Rock'
+
+buttonsClass.appendChild(rockBtn);
+buttonsClass.appendChild(paperBtn);
+buttonsClass.appendChild(scissorBtn);
+
+// const btn = document.querySelector('button');
+// btn.addEventListener('click', function (e){
+
+// });
