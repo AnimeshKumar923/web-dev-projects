@@ -1,16 +1,16 @@
-// assigning rock = 1, paper = 2, scissors = 3
+// assigning rock = 1, paper = 2, scissor = 3
 
 function getComputerChoice(){
     let number = getRandom(1,3);
     switch(number){
         case 1:
-            // obj = "Rock";
+            // obj = 'Rock';
             return 1;
         case 2:
-            // obj = "Paper";
+            // obj = 'Paper';
             return 2;
         case 3:
-            // obj = "Scissors";
+            // obj = 'scissor';
             return 3;
     }
 }
@@ -19,20 +19,21 @@ let playerChoiceNum;
 let computerChoiceNum;
 
 function playerChoice(){
-    let playerSelection = prompt("Your turn");
-    let lowercasePlayer = playerSelection.toLowerCase();
-    if(lowercasePlayer == "rock"){
+    let playerSelection; //= prompt('Your turn');
+
+    let lowercasePlayer = playerSelection ;//= playerSelection.toLowerCase();
+    if(lowercasePlayer == 'rock'){
         return playerChoiceNum = 1;
-    } else if(lowercasePlayer == "paper"){
+    } else if(lowercasePlayer == 'paper'){
         return playerChoiceNum = 2;
-    } else if(lowercasePlayer == "scissors"){
+    } else if(lowercasePlayer == 'scissor'){
         return playerChoiceNum = 3;
     } else{
         console.log(`Please enter correct choice!`);
     }
 }
 
-// assigning rock = 1, paper = 2, scissors = 3
+// assigning rock = 1, paper = 2, scissor = 3
 var isTie;
 var computerWinCount = 0;
 var playerWinCount = 0;
@@ -95,10 +96,10 @@ function getRandom(min, max) {
 function game(){
 
     // for(i=0; i<5; i++){
-    //     playerChoiceNum = playerChoice();
-    //     computerChoiceNum = getComputerChoice();
-    //     result = playRound(playerChoiceNum, computerChoiceNum);
-    //     console.log(result);
+        playerChoiceNum = playerChoice();
+        computerChoiceNum = getComputerChoice();
+        result = playRound(playerChoiceNum, computerChoiceNum);
+        console.log(result);
     // }
 
     if(playerWinCount>computerWinCount){
@@ -134,7 +135,31 @@ buttonsClass.appendChild(rockBtn);
 buttonsClass.appendChild(paperBtn);
 buttonsClass.appendChild(scissorBtn);
 
-// const btn = document.querySelector('button');
-// btn.addEventListener('click', function (e){
-
-// });
+const btn = document.querySelector('button');
+btn.addEventListener('click', function (){
+    // switch (btn.className) {
+    //     case 'rock':
+    //         playerSelection = 'rock';
+    //         break;
+            
+    //     case 'paper':
+    //         playerSelection = 'paper';
+    //         break;
+            
+    //     case 'scissor':
+    //         playerSelection = 'scissor';
+    //         break;
+        // default:
+        //     break;
+        if(btn.className === 'rock'){
+            playerSelection = 'rock';
+            game();
+        } else if(btn.className === 'paper'){
+            playerSelection = 'paper';
+            game();
+        } else if(btn.className === 'scissor'){
+            playerSelection = 'scissor'
+            game();
+        }
+    }
+);
