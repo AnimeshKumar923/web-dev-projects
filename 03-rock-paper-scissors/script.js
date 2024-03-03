@@ -18,20 +18,20 @@ function getComputerChoice(){
 let playerChoiceNum;
 let computerChoiceNum;
 
-function playerChoice(){
-    let playerSelection; //= prompt('Your turn');
+// function playerChoice(){
+//     let playerSelection; //= prompt('Your turn');
 
-    let lowercasePlayer = playerSelection ;//= playerSelection.toLowerCase();
-    if(lowercasePlayer == 'rock'){
-        return playerChoiceNum = 1;
-    } else if(lowercasePlayer == 'paper'){
-        return playerChoiceNum = 2;
-    } else if(lowercasePlayer == 'scissor'){
-        return playerChoiceNum = 3;
-    } else{
-        console.log(`Please enter correct choice!`);
-    }
-}
+//     let lowercasePlayer = playerSelection ;//= playerSelection.toLowerCase();
+//     if(lowercasePlayer === 'rock'){
+//         return playerChoiceNum = 1;
+//     } else if(lowercasePlayer === 'paper'){
+//         return playerChoiceNum = 2;
+//     } else if(lowercasePlayer === 'scissor'){
+//         return playerChoiceNum = 3;
+//     } else{
+//         console.log(`Please enter correct choice!`);
+//     }
+// }
 
 // assigning rock = 1, paper = 2, scissor = 3
 var isTie;
@@ -96,25 +96,29 @@ function getRandom(min, max) {
 function game(){
 
     // for(i=0; i<5; i++){
-        playerChoiceNum = playerChoice();
-        computerChoiceNum = getComputerChoice();
-        result = playRound(playerChoiceNum, computerChoiceNum);
-        console.log(result);
+    //     playerChoiceNum = playerChoice();
+    //     computerChoiceNum = getComputerChoice();
+    //     result = playRound(playerChoiceNum, computerChoiceNum);
+        // console.log(result);
     // }
 
-    if(playerWinCount>computerWinCount){
-        console.log(`Player: ${playerWinCount} Computer: ${computerWinCount}`);
-        console.log(`You won the round!`);
-    } else if(playerWinCount<computerWinCount){
-        console.log(`Player: ${playerWinCount} Computer: ${computerWinCount}`);
-        console.log(`Computer won the round!`);
-    }
+    // if(playerWinCount>computerWinCount){
+    //     console.log(`Player: ${playerWinCount} Computer: ${computerWinCount}`);
+    //     console.log(`You won the round!`);
+    // } else if(playerWinCount<computerWinCount){
+    //     console.log(`Player: ${playerWinCount} Computer: ${computerWinCount}`);
+    //     console.log(`Computer won the round!`);
+    // }
 }
 
-game(computerWinCount, playerWinCount);
+// game(computerWinCount, playerWinCount);
 
 
 // DOM Section
+const body = document.querySelector('body');
+const btnDiv = document.createElement('div');
+btnDiv.classList.add('buttons');
+body.appendChild(btnDiv);
 
 // the three buttons
 const buttonsClass = document.querySelector('.buttons');
@@ -135,31 +139,72 @@ buttonsClass.appendChild(rockBtn);
 buttonsClass.appendChild(paperBtn);
 buttonsClass.appendChild(scissorBtn);
 
+
+rockBtn.addEventListener('click', function(){
+    // playerSelection = 'rock';
+    playerChoiceNum = 1;
+    computerChoiceNum = getComputerChoice();
+    playRound(playerChoiceNum, computerChoiceNum);
+});
+
+paperBtn.addEventListener('click', function(){
+    // playerSelection = 'paper';
+    playerChoiceNum = 2;
+    computerChoiceNum = getComputerChoice();
+    playRound(playerChoiceNum, computerChoiceNum);
+});
+
+scissorBtn.addEventListener('click', function(){
+    // playerSelection = 'paper';
+    playerChoiceNum = 3;
+    computerChoiceNum = getComputerChoice();
+    playRound(playerChoiceNum, computerChoiceNum);
+});
+
+
+const resultDiv = document.createElement('div');
+resultDiv.classList.add('result');
+body.appendChild(resultDiv);
+
+resultDiv.style.display = 'flex';
+resultDiv.style.height = '100px';
+resultDiv.style.width = '100px';
+resultDiv.textContent = 'hello';
+
+/////////////////////////////////////////////////////
 const btn = document.querySelector('button');
-btn.addEventListener('click', function (){
-    // switch (btn.className) {
-    //     case 'rock':
-    //         playerSelection = 'rock';
-    //         break;
+// btn.addEventListener('click', function (){
+//     // switch (btn.className) {
+//     //     case 'rock':
+//     //         playerSelection = 'rock';
+//     //         break;
             
-    //     case 'paper':
-    //         playerSelection = 'paper';
-    //         break;
+//     //     case 'paper':
+//     //         playerSelection = 'paper';
+//     //         break;
             
-    //     case 'scissor':
-    //         playerSelection = 'scissor';
-    //         break;
-        // default:
-        //     break;
-        if(btn.className === 'rock'){
-            playerSelection = 'rock';
-            game();
-        } else if(btn.className === 'paper'){
-            playerSelection = 'paper';
-            game();
-        } else if(btn.className === 'scissor'){
-            playerSelection = 'scissor'
-            game();
-        }
-    }
-);
+//     //     case 'scissor':
+//     //         playerSelection = 'scissor';
+//     //         break;
+//         // default:
+//         //     break;
+//         if(btn.className === 'rock'){
+//             playerSelection = 'rock';
+//             playRound(playerChoiceNum, computerChoiceNum)
+//         } else if(btn.className === 'paper'){
+//             playRound(playerChoiceNum, computerChoiceNum)
+//             playerSelection = 'paper';
+//         } else if(btn.className === 'scissor'){
+//             playerSelection = 'scissor'
+//             playRound(playerChoiceNum, computerChoiceNum)
+//         }
+//     }
+// );
+
+if(playerWinCount>computerWinCount){
+    console.log(`Player: ${playerWinCount} Computer: ${computerWinCount}`);
+    console.log(`You won the round!`);
+} else if(playerWinCount<computerWinCount){
+    console.log(`Player: ${playerWinCount} Computer: ${computerWinCount}`);
+    console.log(`Computer won the round!`);
+}
