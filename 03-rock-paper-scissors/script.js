@@ -156,25 +156,19 @@ const scissorBtnEvnt = document.querySelector('.scissor');
 rockBtnEvnt.addEventListener('click', function(){
     // playerSelection = 'rock';
     playerChoiceNum = 1;
-    computerChoiceNum = getComputerChoice();
-    resultDiv.textContent = playRound(playerChoiceNum, computerChoiceNum);
-    roundInfoDiv.textContent = `Player: ${playerWinCount} \nComputer: ${computerWinCount}`;
+    cupdateScoreDisplay();
 });
 
 paperBtnEvnt.addEventListener('click', function(){
     // playerSelection = 'paper';
     playerChoiceNum = 2;
-    computerChoiceNum = getComputerChoice();
-    resultDiv.textContent = playRound(playerChoiceNum, computerChoiceNum);
-    roundInfoDiv.textContent = `Player: ${playerWinCount} \nComputer: ${computerWinCount}`;
+    updateScoreDisplay();
 });
 
 scissorBtnEvnt.addEventListener('click', function(){
     // playerSelection = 'paper';
     playerChoiceNum = 3;
-    computerChoiceNum = getComputerChoice();
-    resultDiv.textContent = playRound(playerChoiceNum, computerChoiceNum);
-    roundInfoDiv.textContent = `Player: ${playerWinCount} \nComputer: ${computerWinCount}`;
+    updateScoreDisplay();
 });
 
 //----------------- buttons eventListener END ---------------//
@@ -215,5 +209,10 @@ function determineWinner(){
     }
 }
 
+function updateScoreDisplay(){
+    computerChoiceNum = getComputerChoice();
+    resultDiv.textContent = playRound(playerChoiceNum, computerChoiceNum);
+    roundInfoDiv.textContent = `Player: ${playerWinCount} \nComputer: ${computerWinCount}`;
+}
 // determineWinner();
 // resultDiv.textContent = roundInfo;
