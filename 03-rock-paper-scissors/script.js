@@ -74,12 +74,12 @@ function playRound(playerChoiceNum, computerChoiceNum){
 }
 
 
-while(isTie){
-    alert(`It's a tie! Try Again`);
-    playerChoiceNum = playerChoice();
-    computerChoiceNum = getComputerChoice();
-    result = playRound(playerChoiceNum, computerChoiceNum);
-}
+// while(isTie){
+//     // alert(`It's a tie! Try Again`);
+//     // playerChoiceNum = playerChoice();
+//     computerChoiceNum = getComputerChoice();
+//     result = playRound(playerChoiceNum, computerChoiceNum);
+// }
 
 function getRandom(min, max) {
     const floatRandom = Math.random();
@@ -115,7 +115,8 @@ function game(){
 // game(computerWinCount, playerWinCount);
 
 
-// DOM Section
+// ----------- DOM Section --------------
+
 const body = document.querySelector('body');
 const btnDiv = document.createElement('div');
 btnDiv.classList.add('buttons');
@@ -156,24 +157,21 @@ rockBtnEvnt.addEventListener('click', function(){
     // playerSelection = 'rock';
     playerChoiceNum = 1;
     computerChoiceNum = getComputerChoice();
-    let roundResult = playRound(playerChoiceNum, computerChoiceNum);
-    resultDiv.textContent = roundResult;
+    resultDiv.textContent = playRound(playerChoiceNum, computerChoiceNum);
 });
 
 paperBtnEvnt.addEventListener('click', function(){
     // playerSelection = 'paper';
     playerChoiceNum = 2;
     computerChoiceNum = getComputerChoice();
-    let roundResult = playRound(playerChoiceNum, computerChoiceNum);
-    resultDiv.textContent = roundResult;
+    resultDiv.textContent = playRound(playerChoiceNum, computerChoiceNum);
 });
 
 scissorBtnEvnt.addEventListener('click', function(){
     // playerSelection = 'paper';
     playerChoiceNum = 3;
     computerChoiceNum = getComputerChoice();
-    let roundResult = playRound(playerChoiceNum, computerChoiceNum);
-    resultDiv.textContent = roundResult;
+    resultDiv.textContent = playRound(playerChoiceNum, computerChoiceNum);
 });
 
 //----------------- buttons eventListener END ---------------//
@@ -190,48 +188,28 @@ resultDiv.style.paddingTop = '50px';
 resultDiv.style.paddingLeft = '50px';
 
 
+
+const roundInfoDiv = document.createElement('div');
+roundInfoDiv.classList.add('roundInfo');
+body.appendChild(roundInfoDiv);
+
+roundInfoDiv.style.display = 'flex';
+roundInfoDiv.style.height = '100px';
+roundInfoDiv.style.width = '100px';
+roundInfoDiv.style.paddingTop = '50px';
+roundInfoDiv.style.paddingLeft = '50px';
+roundInfoDiv.textContent = `Player: ${playerWinCount} \nComputer: ${computerWinCount}`;
+
 /////////////////////////////////////////////////////
-// const btn = document.querySelector('button');
-// btn.addEventListener('click', function (){
-//     // switch (btn.className) {
-//     //     case 'rock':
-//     //         playerSelection = 'rock';
-//     //         break;
-            
-//     //     case 'paper':
-//     //         playerSelection = 'paper';
-//     //         break;
-            
-//     //     case 'scissor':
-//     //         playerSelection = 'scissor';
-//     //         break;
-//         // default:
-//         //     break;
-//         if(btn.className === 'rock'){
-//             playerSelection = 'rock';
-//             playRound(playerChoiceNum, computerChoiceNum)
-//         } else if(btn.className === 'paper'){
-//             playRound(playerChoiceNum, computerChoiceNum)
-//             playerSelection = 'paper';
-//         } else if(btn.className === 'scissor'){
-//             playerSelection = 'scissor'
-//             playRound(playerChoiceNum, computerChoiceNum)
-//         }
-//     }
-// );
 
 
 function determineWinner(){
     if(playerWinCount>computerWinCount){
-        // console.log(`Player: ${playerWinCount} Computer: ${computerWinCount}`);
         roundInfo = `Player: ${playerWinCount} Computer: ${computerWinCount}\nYou won the round!`
-        // console.log(`You won the round!`);
     } else if(playerWinCount<computerWinCount){
-        // console.log(`Player: ${playerWinCount} Computer: ${computerWinCount}`);
         roundInfo = `Player: ${playerWinCount} Computer: ${computerWinCount}\nComputer won the round!`;
-        // console.log(`Computer won the round!`);
     }
 }
 
-determineWinner();
-resultDiv.textContent = roundInfo;
+// determineWinner();
+// resultDiv.textContent = roundInfo;
