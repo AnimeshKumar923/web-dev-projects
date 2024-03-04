@@ -158,6 +158,7 @@ rockBtnEvnt.addEventListener('click', function(){
     playerChoiceNum = 1;
     computerChoiceNum = getComputerChoice();
     resultDiv.textContent = playRound(playerChoiceNum, computerChoiceNum);
+    roundInfoDiv.textContent = `Player: ${playerWinCount} \nComputer: ${computerWinCount}`;
 });
 
 paperBtnEvnt.addEventListener('click', function(){
@@ -165,6 +166,7 @@ paperBtnEvnt.addEventListener('click', function(){
     playerChoiceNum = 2;
     computerChoiceNum = getComputerChoice();
     resultDiv.textContent = playRound(playerChoiceNum, computerChoiceNum);
+    roundInfoDiv.textContent = `Player: ${playerWinCount} \nComputer: ${computerWinCount}`;
 });
 
 scissorBtnEvnt.addEventListener('click', function(){
@@ -172,9 +174,11 @@ scissorBtnEvnt.addEventListener('click', function(){
     playerChoiceNum = 3;
     computerChoiceNum = getComputerChoice();
     resultDiv.textContent = playRound(playerChoiceNum, computerChoiceNum);
+    roundInfoDiv.textContent = `Player: ${playerWinCount} \nComputer: ${computerWinCount}`;
 });
 
 //----------------- buttons eventListener END ---------------//
+
 
 
 const resultDiv = document.createElement('div');
@@ -198,7 +202,7 @@ roundInfoDiv.style.height = '100px';
 roundInfoDiv.style.width = '100px';
 roundInfoDiv.style.paddingTop = '50px';
 roundInfoDiv.style.paddingLeft = '50px';
-roundInfoDiv.textContent = `Player: ${playerWinCount} \nComputer: ${computerWinCount}`;
+
 
 /////////////////////////////////////////////////////
 
