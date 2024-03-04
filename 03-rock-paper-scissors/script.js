@@ -38,6 +38,7 @@ var isTie;
 var computerWinCount = 0;
 var playerWinCount = 0;
 let result;
+let roundInfo;
 
 function playRound(playerChoiceNum, computerChoiceNum){
     if((playerChoiceNum === computerChoiceNum)){
@@ -122,6 +123,10 @@ body.appendChild(btnDiv);
 
 // the three buttons
 const buttonsClass = document.querySelector('.buttons');
+buttonsClass.style.display = 'flex';
+buttonsClass.style.gap = '50px';
+buttonsClass.style.paddingTop = '50px';
+buttonsClass.style.paddingLeft = '50px';
 
 const rockBtn = document.createElement('button');
 rockBtn.classList.add('rock');
@@ -140,26 +145,38 @@ buttonsClass.appendChild(paperBtn);
 buttonsClass.appendChild(scissorBtn);
 
 
-rockBtn.addEventListener('click', function(){
+
+//----------------- buttons eventListener START ---------------//
+
+const rockBtnEvnt = document.querySelector('.rock');
+const paperBtnEvnt = document.querySelector('.paper');
+const scissorBtnEvnt = document.querySelector('.scissor');
+
+rockBtnEvnt.addEventListener('click', function(){
     // playerSelection = 'rock';
     playerChoiceNum = 1;
     computerChoiceNum = getComputerChoice();
-    playRound(playerChoiceNum, computerChoiceNum);
+    let roundResult = playRound(playerChoiceNum, computerChoiceNum);
+    resultDiv.textContent = roundResult;
 });
 
-paperBtn.addEventListener('click', function(){
+paperBtnEvnt.addEventListener('click', function(){
     // playerSelection = 'paper';
     playerChoiceNum = 2;
     computerChoiceNum = getComputerChoice();
-    playRound(playerChoiceNum, computerChoiceNum);
+    let roundResult = playRound(playerChoiceNum, computerChoiceNum);
+    resultDiv.textContent = roundResult;
 });
 
-scissorBtn.addEventListener('click', function(){
+scissorBtnEvnt.addEventListener('click', function(){
     // playerSelection = 'paper';
     playerChoiceNum = 3;
     computerChoiceNum = getComputerChoice();
-    playRound(playerChoiceNum, computerChoiceNum);
+    let roundResult = playRound(playerChoiceNum, computerChoiceNum);
+    resultDiv.textContent = roundResult;
 });
+
+//----------------- buttons eventListener END ---------------//
 
 
 const resultDiv = document.createElement('div');
@@ -169,10 +186,12 @@ body.appendChild(resultDiv);
 resultDiv.style.display = 'flex';
 resultDiv.style.height = '100px';
 resultDiv.style.width = '100px';
-resultDiv.textContent = 'hello';
+resultDiv.style.paddingTop = '50px';
+resultDiv.style.paddingLeft = '50px';
+
 
 /////////////////////////////////////////////////////
-const btn = document.querySelector('button');
+// const btn = document.querySelector('button');
 // btn.addEventListener('click', function (){
 //     // switch (btn.className) {
 //     //     case 'rock':
@@ -201,10 +220,18 @@ const btn = document.querySelector('button');
 //     }
 // );
 
-if(playerWinCount>computerWinCount){
-    console.log(`Player: ${playerWinCount} Computer: ${computerWinCount}`);
-    console.log(`You won the round!`);
-} else if(playerWinCount<computerWinCount){
-    console.log(`Player: ${playerWinCount} Computer: ${computerWinCount}`);
-    console.log(`Computer won the round!`);
+
+function determineWinner(){
+    if(playerWinCount>computerWinCount){
+        // console.log(`Player: ${playerWinCount} Computer: ${computerWinCount}`);
+        roundInfo = `Player: ${playerWinCount} Computer: ${computerWinCount}\nYou won the round!`
+        // console.log(`You won the round!`);
+    } else if(playerWinCount<computerWinCount){
+        // console.log(`Player: ${playerWinCount} Computer: ${computerWinCount}`);
+        roundInfo = `Player: ${playerWinCount} Computer: ${computerWinCount}\nComputer won the round!`;
+        // console.log(`Computer won the round!`);
+    }
 }
+
+determineWinner();
+resultDiv.textContent = roundInfo;
