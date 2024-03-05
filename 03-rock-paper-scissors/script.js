@@ -139,7 +139,7 @@ paperBtn.textContent = 'Paper'
 
 const scissorBtn = document.createElement('button');
 scissorBtn.classList.add('scissor');
-scissorBtn.textContent = 'Rock'
+scissorBtn.textContent = 'Scissor'
 
 buttonsClass.appendChild(rockBtn);
 buttonsClass.appendChild(paperBtn);
@@ -156,23 +156,57 @@ const scissorBtnEvnt = document.querySelector('.scissor');
 rockBtnEvnt.addEventListener('click', function(){
     // playerSelection = 'rock';
     playerChoiceNum = 1;
-    cupdateScoreDisplay();
+    updateScoreDisplay();
+    determineWinner();
 });
 
 paperBtnEvnt.addEventListener('click', function(){
     // playerSelection = 'paper';
     playerChoiceNum = 2;
     updateScoreDisplay();
+    determineWinner();
 });
 
 scissorBtnEvnt.addEventListener('click', function(){
     // playerSelection = 'paper';
     playerChoiceNum = 3;
     updateScoreDisplay();
+    determineWinner();
 });
 
 //----------------- buttons eventListener END ---------------//
 
+
+// -------- Alternate eventListener code START ----------
+
+// const btn = document.querySelector('button');
+
+// btn.addEventListener('click', function(){
+//     switch (btn.className) {
+//         case 'rock':
+//             playerChoiceNum = 1;
+//             updateScoreDisplay();
+//             determineWinner();
+//             break;
+            
+//         case 'paper':
+//             playerChoiceNum = 2;
+//             updateScoreDisplay();
+//             determineWinner();
+//             break;
+            
+//         case 'scissor':
+//             playerChoiceNum = 3;
+//             updateScoreDisplay();
+//             determineWinner();
+//             break;
+//     }
+// })
+
+
+// NOT WORKING WITH THE SWITCH CASE CURRENTLY WITH THIS CODE
+
+// --------- Alternate eventListener code END ----------
 
 
 const resultDiv = document.createElement('div');
@@ -198,21 +232,36 @@ roundInfoDiv.style.paddingTop = '50px';
 roundInfoDiv.style.paddingLeft = '50px';
 
 
+
+const gameResultDiv = document.createElement('div');
+body.appendChild(gameResultDiv);
+
+gameResultDiv.style.display = 'flex';
+gameResultDiv.style.height = '100px';
+gameResultDiv.style.width = '100px';
+gameResultDiv.style.paddingTop = '50px';
+gameResultDiv.style.paddingLeft = '50px';
+
 /////////////////////////////////////////////////////
 
-
-function determineWinner(){
-    if(playerWinCount>computerWinCount){
-        roundInfo = `Player: ${playerWinCount} Computer: ${computerWinCount}\nYou won the round!`
-    } else if(playerWinCount<computerWinCount){
-        roundInfo = `Player: ${playerWinCount} Computer: ${computerWinCount}\nComputer won the round!`;
-    }
-}
 
 function updateScoreDisplay(){
     computerChoiceNum = getComputerChoice();
     resultDiv.textContent = playRound(playerChoiceNum, computerChoiceNum);
     roundInfoDiv.textContent = `Player: ${playerWinCount} \nComputer: ${computerWinCount}`;
 }
-// determineWinner();
-// resultDiv.textContent = roundInfo;
+
+function determineWinner() {
+    if (playerWinCount === 5 &&computerWinCount < 5) {
+        gameResultDiv.textContent = 'You win the game!'
+    } else if(playerWinCount < 5 && computerWinCount === 5) {
+        gameResultDiv.textContent = 'Computer wins the game!'
+    } else if(playerWinCount === 5 &&computerWinCount === 5){
+        gameResultDiv.textContent = `It's a tie game!`
+    }
+
+    if(playerWinCount>4 || computerWinCount>4){
+        computerWinCount = 0;
+        playerWinCount = 0;
+    }
+}
