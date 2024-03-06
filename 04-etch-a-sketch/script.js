@@ -13,15 +13,17 @@ body.appendChild(parentContainer);
 //     parentContainer.appendChild(sqrDiv);
 // }
 
+const rowDivCSStext = `border: 1px solid black; height: 150px; width: 137px; gap: 2px; display: flex; flex-wrap: wrap`;
+
 for(let i=1; i<=16; i++){
     const rowDiv = document.createElement('div');
     rowDiv.classList.add(`div-${i}`)
-    rowDiv.style.cssText = `border: 1px solid black; height: 100px; width: 100px; display: flex; flex-wrap: wrap`;
+    rowDiv.style.cssText = rowDivCSStext;
     parentContainer.appendChild(rowDiv);
-    // for(let j=1; j<=16; j++){
-    //     const insideDiv = document.createElement('div');
-    //     insideDiv.classList.add(`insideDiv-${j}`)
-    //     insideDiv.style.cssText = 'border: 1px solid black; height: 30px; width: 30px';
-    //     rowDiv.appendChild(insideDiv);
-    // }
+    for(let j=1; j<=16; j++){
+        const insideDiv = document.createElement('div');
+        insideDiv.classList.add(`insideDiv-${j}`)
+        insideDiv.style.cssText = 'border: 1px solid black; height: 30px; width: 30px';
+        rowDiv.appendChild(insideDiv);
+    }
 }
