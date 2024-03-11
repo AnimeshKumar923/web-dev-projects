@@ -2,8 +2,10 @@
     display: flex;
     flex-wrap: wrap;
     border: 1px solid red;
-    height: 630px;
-    width: 558px;
+    height: 545px;
+    width: 545px;
+    padding-left: 2px;
+    padding-top: 2px;
 }
 
 body{
