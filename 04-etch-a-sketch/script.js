@@ -1,5 +1,6 @@
 // --------- whiteboard size ---------------
-let panelSize = prompt('Enter size', '16');
+let panelSize = prompt('Enter size');
+panelSize = parseFloat(panelSize);
 
 // -----------------------------------------
 
@@ -11,7 +12,7 @@ body.appendChild(parentContainer);
 
 const rowDivCSSflexbox = `display: flex; flex: 1 1 0; flex-wrap: wrap;`;
 
-const rowDivCSStext = `border: 0px solid black; height: 150px; width: 135px; gap: 2px; ${rowDivCSSflexbox}`;
+const rowDivCSStext = `border: 0px solid black; height: ${100/panelSize}%; width: 100%; gap: 0px; ${rowDivCSSflexbox}`;
 
 boxSetter();
 
@@ -52,7 +53,7 @@ function boxSetter(){
         for(let j=1; j<=panelSize; j++){
             const columnDiv = document.createElement('col-div');
             columnDiv.classList.add(`col-div`)
-            columnDiv.style.cssText = 'border: 1px solid black; height: 30px; width: 30px';
+            columnDiv.style.cssText = ` height: 100%; width: 100%`;
             rowDiv.appendChild(columnDiv);    
         }
     }

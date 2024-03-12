@@ -1,11 +1,11 @@
 .container{
     display: flex;
     flex-wrap: wrap;
-    border: 1px solid red;
+    border: 5px solid red;
     height: 545px;
     width: 545px;
-    padding-left: 2px;
-    padding-top: 2px;
+    /* padding-left: 2px;
+    padding-top: 2px; */
 }
 
 body{
