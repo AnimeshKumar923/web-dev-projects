@@ -117,7 +117,7 @@ randomColorBtn.addEventListener('click', function(){
             this.style.backgroundColor = 'rgb(' + randomize() + ',' + randomize() + ',' + randomize() + ')';
         });
     });
-})
+});
 
 
 // ---------- color randomizer END ------------
@@ -126,3 +126,25 @@ function randomize(){
     return randomNum = Math.floor(Math.random() * 256);
     
 }
+
+
+const progressiveBtn = document.createElement('button');
+progressiveBtn.classList.add('progressive-color-btn');
+progressiveBtn.style.height = '50px'
+progressiveBtn.style.width = '100px'
+progressiveBtn.style.marginLeft = '50px'
+progressiveBtn.style.marginTop = '50px'
+progressiveBtn.textContent = 'Progressive Darkening'
+body.appendChild(progressiveBtn);
+
+// progressiveBtn.addEventListener('click', function(){
+
+//     let brightness = 100;
+//     hover.forEach(element => {
+//         element.addEventListener('mouseover', function(){
+//             this.style.cssText = `filter: brightness(${brightness}%)`;
+//             brightness = brightness - 10;
+//         });
+//     }
+//     ); 
+// });
