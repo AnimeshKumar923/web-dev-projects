@@ -41,11 +41,12 @@ body{
   border: solid black 2px ; 
   display: flex;
   gap: 2px
-}
-
+  }
+  
 .row-5{
   justify-content: space-around;
-  /* background-color: fuchsia; */
+  border: solid black 3px ; 
+  background-color: sandybrown;
   
 }
 
@@ -60,7 +61,7 @@ body{
 }
 .clear-btn:hover {
   background-color: bisque;
-  transition: background-color 0.5s;
+  transition: background-color 0.3s;
 }
 
 .num-0,
@@ -83,8 +84,35 @@ body{
   font-size: 50px; 
   border: solid black 2px;
   padding: 5px;
-  width: 50px; 
+  width: 70px; 
   display: flex;
   justify-content: center;
 }
 
+.display{
+  font-size: 50px; 
+  padding: 5px;
+  display: flex;
+  justify-content: center; 
+}
+
+.num-0:hover,
+.num-1:hover,
+.num-2:hover,
+.num-3:hover,
+.num-4:hover,
+.num-5:hover,
+.num-6:hover,
+.num-7:hover,
+.num-8:hover,
+.num-9:hover,
+.addition:hover,
+.subtraction:hover,
+.multiplication:hover,
+.division:hover,
+.decimal:hover,
+.zero:hover,
+.equal:hover{
+  background-color: rgb(5, 240, 181);
+  transition: background-color 0.5s;
+}
