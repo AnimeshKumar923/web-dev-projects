@@ -37,7 +37,54 @@ body{
   padding: 5px;
 }
 
-.row-1, .row-2, .row-3, .row-4{
-  border: solid black 4px ; 
+.row-1, .row-2, .row-3, .row-4, .row-5{
+  border: solid black 2px ; 
   display: flex;
+  gap: 2px
 }
+
+.row-5{
+  justify-content: space-around;
+  /* background-color: fuchsia; */
+  
+}
+
+.clear-btn{
+  font-size: 50px; 
+  border: solid firebrick 3px; padding: 5px; 
+  width: 250px; 
+  background-color: gold; 
+  margin: 5px; 
+  border-radius: 12px; 
+  cursor: pointer 
+}
+.clear-btn:hover {
+  background-color: bisque;
+  transition: background-color 0.5s;
+}
+
+.num-0,
+.num-1,
+.num-2,
+.num-3,
+.num-4,
+.num-5,
+.num-6,
+.num-7,
+.num-8,
+.num-9,
+.addition,
+.subtraction,
+.multiplication,
+.division,
+.decimal,
+.zero,
+.equal{
+  font-size: 50px; 
+  border: solid black 2px;
+  padding: 5px;
+  width: 50px; 
+  display: flex;
+  justify-content: center;
+}
+
