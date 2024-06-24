@@ -90,7 +90,7 @@ rowFive.appendChild(clearBtn);
 
 // -------- OPERATIONS LOGIC --------
 
-let num1, num2, operation;
+// let num1, num2, operation;
 
 function add(num1, num2){
   return num1 + num2;
@@ -111,19 +111,19 @@ function divide(num1, num2){
 // console.log(add(5, 10), subtract(5, 10), multiply(5, 10), divide(5, 10));
 
 
-function operate(operator, num1, num2){
+function operate(operator){
   switch (operator) {
     case '+':
-      add(num1, num2);
+      numberSection.textContent = add(data.num1, data.num2);
       break;
     case '-':
-      subtract(num1, num2);
+      numberSection.textContent = subtract(data.num1, data.num2);
       break;
     case '*':
-      multiply(num1, num2);
+      numberSection.textContent = multiply(data.num1, data.num2);
       break;
     case '/':
-      divide(num1, num2);
+      numberSection.textContent = divide(data.num1, data.num2);
       break;
     default:
       alert('not a valid operation')
@@ -132,20 +132,21 @@ function operate(operator, num1, num2){
 }
 
 
+// ------ CALCULATION LOGIC ---------
 
+let data = {
+  num1: undefined,
+  num2: undefined,
+  operation: `op`
+}
 
 
 // -------- DISPLAY LOGIC -----------
 
 const numberSection = document.querySelector('.numbers')
 
-let displayVal = `0`;
-numberSection.textContent = `${zero.textContent}`;
-
-
-
-
-
+let displayVal;
+numberSection.textContent = `start`;
 
 
 
@@ -155,27 +156,37 @@ numberSection.textContent = `${zero.textContent}`;
 const operatorDisplay = document.querySelector('.operator');
 
 opsDiv1.addEventListener('click', function(){
-  operatorDisplay.textContent = `${opsDiv1.textContent}`;
   operation = `+`;
+  operatorDisplay.textContent = `${operation}`;
+  data.operation = operation;
 })
 
 opsDiv2.addEventListener('click', function(){
-  operatorDisplay.textContent = `${opsDiv2.textContent}`;
   operation = `-`;
+  operatorDisplay.textContent = `${operation}`;
+  data.operation = operation;
 })
 
 opsDiv3.addEventListener('click', function(){
-  operatorDisplay.textContent = `${opsDiv3.textContent}`;
   operation = `*`;
+  operatorDisplay.textContent = `${operation}`;
+  data.operation = operation;
 })
 
 opsDiv4.addEventListener('click', function(){
-  operatorDisplay.textContent = `${opsDiv4.textContent}`;
   operation = `/`;
+  operatorDisplay.textContent = `${operation}`;
+  data.operation = operation;
 })
 
+equal.addEventListener('click', function(){
+  operate(data.operation);
 
+})
 
+clearBtn.addEventListener('click', function(){
+  window.location.reload();
+})
 
 // ---- NUMBERS EVENTLISTENERS -----
 
@@ -184,6 +195,10 @@ n0.addEventListener('click', function(){
   displayVal = 0;
   numberSection.textContent = `${displayVal}`;
   // console.log('zero clicked')
+  if(data.num2 === undefined){
+    data.num1 = displayVal;
+  }
+  data.num2 = displayVal;
 });
 
 const n1 = document.querySelector('.num-1');
@@ -191,6 +206,10 @@ n1.addEventListener('click', function(){
   displayVal = 1;
   numberSection.textContent = `${displayVal}`;
   // console.log('zero clicked')
+  if(data.num2 === undefined){
+    data.num1 = displayVal;
+  }
+  data.num2 = displayVal;
 });
 
 const n2 = document.querySelector('.num-2');
@@ -198,6 +217,10 @@ n2.addEventListener('click', function(){
   displayVal = 2;
   numberSection.textContent = `${displayVal}`;
   // console.log('zero clicked')
+  if(data.num2 === undefined){
+    data.num1 = displayVal;
+  }
+  data.num2 = displayVal;
 });
 
 const n3 = document.querySelector('.num-3');
@@ -205,6 +228,10 @@ n3.addEventListener('click', function(){
   displayVal = 3;
   numberSection.textContent = `${displayVal}`;
   // console.log('zero clicked')
+  if(data.num2 === undefined){
+    data.num1 = displayVal;
+  }
+  data.num2 = displayVal;
 });
 
 const n4 = document.querySelector('.num-4');
@@ -212,6 +239,10 @@ n4.addEventListener('click', function(){
   displayVal = 4;
   numberSection.textContent = `${displayVal}`;
   // console.log('zero clicked')
+  if(data.num2 === undefined){
+    data.num1 = displayVal;
+  }
+  data.num2 = displayVal;
 });
 
 const n5 = document.querySelector('.num-5');
@@ -219,6 +250,10 @@ n5.addEventListener('click', function(){
   displayVal = 5;
   numberSection.textContent = `${displayVal}`;
   // console.log('zero clicked')
+  if(data.num2 === undefined){
+    data.num1 = displayVal;
+  }
+  data.num2 = displayVal;
 });
 
 const n6 = document.querySelector('.num-6');
@@ -233,6 +268,10 @@ n7.addEventListener('click', function(){
   displayVal = 7;
   numberSection.textContent = `${displayVal}`;
   // console.log('zero clicked')
+  if(data.num2 === undefined){
+    data.num1 = displayVal;
+  }
+  data.num2 = displayVal;
 });
 
 const n8 = document.querySelector('.num-8');
@@ -240,6 +279,10 @@ n8.addEventListener('click', function(){
   displayVal = 8;
   numberSection.textContent = `${displayVal}`;
   // console.log('zero clicked')
+  if(data.num2 === undefined){
+    data.num1 = displayVal;
+  }
+  data.num2 = displayVal;
 });
 
 const n9 = document.querySelector('.num-9');
@@ -247,4 +290,8 @@ n9.addEventListener('click', function(){
   displayVal = 9;
   numberSection.textContent = `${displayVal}`;
   // console.log('zero clicked')
+  if(data.num2 === undefined){
+    data.num1 = displayVal;
+  }
+  data.num2 = displayVal;
 });
