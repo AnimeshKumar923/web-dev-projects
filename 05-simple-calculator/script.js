@@ -132,6 +132,7 @@ function operate(operator){
 }
 
 
+
 // ------ CALCULATION LOGIC ---------
 
 let data = {
@@ -140,6 +141,10 @@ let data = {
   operation: `op`
 }
 
+function resetData(){
+data.num1 = data.num2 = undefined
+data.operation = `op`;
+}
 
 // -------- DISPLAY LOGIC -----------
 
@@ -181,7 +186,8 @@ opsDiv4.addEventListener('click', function(){
 
 equal.addEventListener('click', function(){
   operate(data.operation);
-
+  resetData();
+  
 })
 
 clearBtn.addEventListener('click', function(){
