@@ -140,10 +140,9 @@ function operate(operator, num1, num2){
 const numberSection = document.querySelector('.numbers')
 
 let displayVal = `0`;
-numberSection.textContent = `${displayVal}`;
+numberSection.textContent = `${zero.textContent}`;
 
 
-const operatorDisplay = document.querySelector('.operator');
 
 
 
@@ -153,31 +152,27 @@ const operatorDisplay = document.querySelector('.operator');
 
 // -----OPERATORS EVENTLISTENERS------
 
-const add = document.querySelector('.addition');
-add.addEventListener('click', () => {
-operatorDisplay.textContent = `${opsDiv1.textContent}`;
-operation = `+`;
+const operatorDisplay = document.querySelector('.operator');
+
+opsDiv1.addEventListener('click', function(){
+  operatorDisplay.textContent = `${opsDiv1.textContent}`;
+  operation = `+`;
 })
 
-const sub = document.querySelector('.subtraction');
-add.addEventListener('click', () => {
-operatorDisplay.textContent = `${opsDiv2.textContent}`;
-operation = `-`;
+opsDiv2.addEventListener('click', function(){
+  operatorDisplay.textContent = `${opsDiv2.textContent}`;
+  operation = `-`;
 })
 
-const multi = document.querySelector('.multiplication');
-add.addEventListener('click', () => {
-operatorDisplay.textContent = `${opsDiv3.textContent}`;
-operation = `*`;
+opsDiv3.addEventListener('click', function(){
+  operatorDisplay.textContent = `${opsDiv3.textContent}`;
+  operation = `*`;
 })
 
-const div = document.querySelector('.division');
-add.addEventListener('click', () => {
-operatorDisplay.textContent = `${opsDiv4.textContent}`;
-operation = `/`;
+opsDiv4.addEventListener('click', function(){
+  operatorDisplay.textContent = `${opsDiv4.textContent}`;
+  operation = `/`;
 })
-
-
 
 
 
