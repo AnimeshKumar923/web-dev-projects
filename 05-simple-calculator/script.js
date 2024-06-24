@@ -132,81 +132,124 @@ function operate(operator, num1, num2){
 }
 
 
+
+
+
 // -------- DISPLAY LOGIC -----------
 
-const displaySection = document.querySelector('.display')
+const numberSection = document.querySelector('.numbers')
 
 let displayVal = `0`;
-displaySection.textContent = `${displayVal}`;
+numberSection.textContent = `${displayVal}`;
+
+
+const operatorDisplay = document.querySelector('.operator');
+
+
+
+
+
+
+
+// -----OPERATORS EVENTLISTENERS------
+
+const add = document.querySelector('.addition');
+add.addEventListener('click', () => {
+operatorDisplay.textContent = `${opsDiv1.textContent}`;
+operation = `+`;
+})
+
+const sub = document.querySelector('.subtraction');
+add.addEventListener('click', () => {
+operatorDisplay.textContent = `${opsDiv2.textContent}`;
+operation = `-`;
+})
+
+const multi = document.querySelector('.multiplication');
+add.addEventListener('click', () => {
+operatorDisplay.textContent = `${opsDiv3.textContent}`;
+operation = `*`;
+})
+
+const div = document.querySelector('.division');
+add.addEventListener('click', () => {
+operatorDisplay.textContent = `${opsDiv4.textContent}`;
+operation = `/`;
+})
+
+
+
+
 
 
 // ---- NUMBERS EVENTLISTENERS -----
+
 const n0 = document.querySelector('.num-0');
 n0.addEventListener('click', function(){
   displayVal = 0;
-  displaySection.textContent = `${displayVal}`;
+  numberSection.textContent = `${displayVal}`;
   // console.log('zero clicked')
 });
 
 const n1 = document.querySelector('.num-1');
 n1.addEventListener('click', function(){
   displayVal = 1;
-  displaySection.textContent = `${displayVal}`;
+  numberSection.textContent = `${displayVal}`;
   // console.log('zero clicked')
 });
 
 const n2 = document.querySelector('.num-2');
 n2.addEventListener('click', function(){
   displayVal = 2;
-  displaySection.textContent = `${displayVal}`;
+  numberSection.textContent = `${displayVal}`;
   // console.log('zero clicked')
 });
 
 const n3 = document.querySelector('.num-3');
 n3.addEventListener('click', function(){
   displayVal = 3;
-  displaySection.textContent = `${displayVal}`;
+  numberSection.textContent = `${displayVal}`;
   // console.log('zero clicked')
 });
 
 const n4 = document.querySelector('.num-4');
 n4.addEventListener('click', function(){
   displayVal = 4;
-  displaySection.textContent = `${displayVal}`;
+  numberSection.textContent = `${displayVal}`;
   // console.log('zero clicked')
 });
 
 const n5 = document.querySelector('.num-5');
 n5.addEventListener('click', function(){
   displayVal = 5;
-  displaySection.textContent = `${displayVal}`;
+  numberSection.textContent = `${displayVal}`;
   // console.log('zero clicked')
 });
 
 const n6 = document.querySelector('.num-6');
 n6.addEventListener('click', function(){
   displayVal = 6;
-  displaySection.textContent = `${displayVal}`;
+  numberSection.textContent = `${displayVal}`;
   // console.log('zero clicked')
 });
 
 const n7 = document.querySelector('.num-7');
 n7.addEventListener('click', function(){
   displayVal = 7;
-  displaySection.textContent = `${displayVal}`;
+  numberSection.textContent = `${displayVal}`;
   // console.log('zero clicked')
 });
 
 const n8 = document.querySelector('.num-8');
 n8.addEventListener('click', function(){
   displayVal = 8;
-  displaySection.textContent = `${displayVal}`;
+  numberSection.textContent = `${displayVal}`;
   // console.log('zero clicked')
 });
 
 const n9 = document.querySelector('.num-9');
 n9.addEventListener('click', function(){
   displayVal = 9;
-  displaySection.textContent = `${displayVal}`;
+  numberSection.textContent = `${displayVal}`;
   // console.log('zero clicked')
 });
