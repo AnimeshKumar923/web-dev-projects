@@ -141,16 +141,20 @@ let data = {
   operation: `op`
 }
 
-function resetData(){
+function clearData(){
 data.num1 = data.num2 = undefined
 data.operation = `op`;
+numberSection.textContent = `start`;
+countClicks = 0;
+baseTen = 0;
+console.clear();
 }
 
 // -------- DISPLAY LOGIC -----------
 
 const numberSection = document.querySelector('.numbers')
 
-let displayVal;
+let displayVal = 0;
 numberSection.textContent = `start`;
 
 
@@ -186,15 +190,16 @@ opsDiv4.addEventListener('click', function(){
 
 equal.addEventListener('click', function(){
   operate(data.operation);
-  resetData();
   
 })
 
 clearBtn.addEventListener('click', function(){
-  window.location.reload();
+  clearData();
 })
 
 // ---- NUMBERS EVENTLISTENERS -----
+
+
 
 const n0 = document.querySelector('.num-0');
 n0.addEventListener('click', function(){
@@ -207,15 +212,29 @@ n0.addEventListener('click', function(){
   data.num2 = displayVal;
 });
 
+
+
+
+let countClicks = 0;
+let baseTen = 0
+
 const n1 = document.querySelector('.num-1');
 n1.addEventListener('click', function(){
-  displayVal = 1;
-  numberSection.textContent = `${displayVal}`;
-  // console.log('zero clicked')
-  if(data.num2 === undefined){
-    data.num1 = displayVal;
-  }
-  data.num2 = displayVal;
+  // displayVal = 1;
+  // if(data.num2 === undefined){
+  // }
+  // data.num2 = baseTen;
+  baseTen += 10**countClicks;
+  data.num1 = baseTen;
+  
+  countClicks++;
+  console.log(`baseTen = ${baseTen}`);
+  console.log(`countClicks = ${countClicks}`);
+  numberSection.textContent = `${baseTen}`;
+  console.log(data.num1, data.num2, data.operation);  
+  // numberSection.textContent = `${displayVal*baseTen}`;
+  
+
 });
 
 const n2 = document.querySelector('.num-2');
