@@ -136,18 +136,20 @@ function operate(operator){
 // ------ CALCULATION LOGIC ---------
 
 let data = {
-  num1: undefined,
-  num2: undefined,
+  num1: [],
+  num2: [],
   operation: `op`
 }
 
 function clearData(){
-data.num1 = data.num2 = undefined
+data.num1 = data.num2 = [];
 data.operation = `op`;
 numberSection.textContent = `start`;
 countClicks = 0;
 baseTen = 0;
+
 console.clear();
+
 }
 
 // -------- DISPLAY LOGIC -----------
@@ -225,8 +227,7 @@ n1.addEventListener('click', function(){
   // }
   // data.num2 = baseTen;
   baseTen += 10**countClicks;
-  data.num1 = baseTen;
-  
+  data.num1.push(baseTen);
   countClicks++;
   console.log(`baseTen = ${baseTen}`);
   console.log(`countClicks = ${countClicks}`);
@@ -241,82 +242,81 @@ const n2 = document.querySelector('.num-2');
 n2.addEventListener('click', function(){
   displayVal = 2;
   numberSection.textContent = `${displayVal}`;
-  // console.log('zero clicked')
-  if(data.num2 === undefined){
-    data.num1 = displayVal;
-  }
-  data.num2 = displayVal;
+  
+  data.num1.push(displayVal);
+  // data.num2.push(displayVal);
+  console.log(data.num1, data.num2, data.operation);
 });
 
 const n3 = document.querySelector('.num-3');
 n3.addEventListener('click', function(){
   displayVal = 3;
   numberSection.textContent = `${displayVal}`;
-  // console.log('zero clicked')
-  if(data.num2 === undefined){
-    data.num1 = displayVal;
-  }
-  data.num2 = displayVal;
+
+  data.num1.push(displayVal);
+  // data.num2.push(displayVal);
+  console.log(data.num1, data.num2, data.operation);
 });
 
 const n4 = document.querySelector('.num-4');
 n4.addEventListener('click', function(){
   displayVal = 4;
   numberSection.textContent = `${displayVal}`;
-  // console.log('zero clicked')
-  if(data.num2 === undefined){
-    data.num1 = displayVal;
-  }
-  data.num2 = displayVal;
+
+  data.num1.push(displayVal);
+  // data.num2.push(displayVal);
+  console.log(data.num1, data.num2, data.operation);
 });
 
 const n5 = document.querySelector('.num-5');
 n5.addEventListener('click', function(){
   displayVal = 5;
   numberSection.textContent = `${displayVal}`;
-  // console.log('zero clicked')
-  if(data.num2 === undefined){
-    data.num1 = displayVal;
-  }
-  data.num2 = displayVal;
+
+  data.num1.push(displayVal);
+  // data.num2.push(displayVal);
+  console.log(data.num1, data.num2, data.operation);
 });
 
 const n6 = document.querySelector('.num-6');
 n6.addEventListener('click', function(){
   displayVal = 6;
-  numberSection.textContent = `${displayVal}`;
-  // console.log('zero clicked')
+  
+  data.num1.push(displayVal);
+  // data.num2.push(displayVal);
+  console.log(data.num1, data.num2, data.operation);
 });
 
 const n7 = document.querySelector('.num-7');
 n7.addEventListener('click', function(){
   displayVal = 7;
   numberSection.textContent = `${displayVal}`;
-  // console.log('zero clicked')
-  if(data.num2 === undefined){
-    data.num1 = displayVal;
-  }
-  data.num2 = displayVal;
+  
+  data.num1.push(displayVal);
+  // data.num2.push(displayVal);
+  console.log(data.num1, data.num2, data.operation);
 });
 
 const n8 = document.querySelector('.num-8');
 n8.addEventListener('click', function(){
   displayVal = 8;
   numberSection.textContent = `${displayVal}`;
-  // console.log('zero clicked')
-  if(data.num2 === undefined){
-    data.num1 = displayVal;
-  }
-  data.num2 = displayVal;
+
+  data.num1.push(displayVal);
+  // data.num2.push(displayVal);
+  console.log(data.num1, data.num2, data.operation);
 });
 
 const n9 = document.querySelector('.num-9');
 n9.addEventListener('click', function(){
   displayVal = 9;
   numberSection.textContent = `${displayVal}`;
-  // console.log('zero clicked')
-  if(data.num2 === undefined){
-    data.num1 = displayVal;
+
+  
+  if(data.operation !== 'op'){
+    data.num2.push(displayVal);
+  } else{
+    data.num1.push(displayVal);
   }
-  data.num2 = displayVal;
+  console.log(data.num1, data.num2, data.operation);
 });
