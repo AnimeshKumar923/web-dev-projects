@@ -7,14 +7,14 @@ const rowFive = document.querySelector('.row-5');
 
 // ----  ROW 1 contents -------------
 for (let i = 7; i <= 9; i++) {
-  const numbers = document.createElement('button');
-  numbers.classList.add(`num-${i}`);
-  numbers.textContent = `${i}`;
-  rowOne.appendChild(numbers);
+  const digit = document.createElement('button');
+  digit.classList.add(`digit`);
+  digit.textContent = `${i}`;
+  rowOne.appendChild(digit);
 }
 
 const division = document.createElement('button');
-division.classList.add(`division`);
+division.classList.add(`operand`);
 division.textContent = `/`;
 rowOne.appendChild(division);
 
@@ -23,14 +23,14 @@ rowOne.appendChild(division);
 
 // ----  ROW 2 contents -------------
 for (let i = 4; i <= 6; i++) {
-  const numbers = document.createElement('button');
-  numbers.classList.add(`num-${i}`);
-  numbers.textContent = `${i}`;
-  rowTwo.appendChild(numbers);
+  const digit = document.createElement('button');
+  digit.classList.add(`digit`);
+  digit.textContent = `${i}`;
+  rowTwo.appendChild(digit);
 }
 
 const multiplication = document.createElement('button');
-multiplication.classList.add(`multiplication`);
+multiplication.classList.add(`operand`);
 multiplication.textContent = `*`;
 rowTwo.appendChild(multiplication);
 
@@ -40,14 +40,14 @@ rowTwo.appendChild(multiplication);
 
 // ----  ROW 3 contents -------------
 for (let i = 1; i <= 3; i++) {
-  const numbers = document.createElement('button');
-  numbers.classList.add(`num-${i}`);
-  numbers.textContent = `${i}`;
-  rowThree.appendChild(numbers);
+  const digit = document.createElement('button');
+  digit.classList.add(`digit`);
+  digit.textContent = `${i}`;
+  rowThree.appendChild(digit);
 }
 
 const subtraction = document.createElement('button');
-subtraction.classList.add(`subtraction`);
+subtraction.classList.add(`operand`);
 subtraction.textContent = `-`;
 rowThree.appendChild(subtraction);
 
@@ -62,12 +62,12 @@ decimal.textContent = `.`;
 rowFour.appendChild(decimal);
 
 const zero = document.createElement('button');
-zero.classList.add(`num-0`);
+zero.classList.add(`digit`);
 zero.textContent = `0`;
 rowFour.appendChild(zero);
 
 const addition = document.createElement('button');
-addition.classList.add(`addition`);
+addition.classList.add(`operand`);
 addition.textContent = `+`;
 rowFour.appendChild(addition);
 
@@ -138,12 +138,12 @@ function operate(operator){
 let data = {
   num1: ``,
   num2: ``,
-  operation: ``
+  operand: ``
 }
 
 function clearData(){
 data.num1 = data.num2 = ``;
-data.operation = ``;
+data.operand = ``;
 numberSection.textContent = `start`;
 countClicks = 0;
 baseTen = 0;
@@ -169,29 +169,29 @@ const operatorDisplay = document.querySelector('.operator');
 addition.addEventListener('click', function(){
   operation = `+`;
   operatorDisplay.textContent = `${operation}`;
-  data.operation = operation;
+  data.operand = operation;
 })
 
 subtraction.addEventListener('click', function(){
   operation = `-`;
   operatorDisplay.textContent = `${operation}`;
-  data.operation = operation;
+  data.operand = operation;
 })
 
 multiplication.addEventListener('click', function(){
   operation = `*`;
   operatorDisplay.textContent = `${operation}`;
-  data.operation = operation;
+  data.operand = operation;
 })
 
 division.addEventListener('click', function(){
   operation = `/`;
   operatorDisplay.textContent = `${operation}`;
-  data.operation = operation;
+  data.operand = operation;
 })
 
 equal.addEventListener('click', function(){
-  operate(data.operation);
+  operate(data.operand);
   
 })
 
@@ -202,149 +202,171 @@ clearBtn.addEventListener('click', function(){
 // ---- NUMBERS EVENTLISTENERS -----
 
 
+const digit = document.querySelectorAll('.digit');
 
-const n0 = document.querySelector('.num-0');
-n0.addEventListener('click', function(){
-  displayVal = 0;
-  numberSection.textContent = `${displayVal}`;
-  if(data.num2 === undefined){
-    data.num1 = displayVal;
-  }
-  data.num2 = displayVal;
-});
+for (let i = 0; i < digit.length; i++) {
+  digit[i].addEventListener('click', function(){
+    displayVal = `${digit[i].textContent}`;
+    numberSection.textContent = `${displayVal}`;
+    
+    if(data.operation === 'op'){
+      data.num1.push(displayVal);
+    } else{
+      data.num2.push(displayVal);
+    }
+    console.log(data.num1, data.num2, data.operation);
 
-
-
-
-let countClicks = 0;
-let baseTen = 0
-
-const n1 = document.querySelector('.num-1');
-n1.addEventListener('click', function(){
-  displayVal = 1;
-  // if(data.num2 === undefined){
-  // }
-  // data.num2 = baseTen;
-  // baseTen += 10**countClicks;
-  // data.num1.push(baseTen);
-  // countClicks++;
-  // console.log(`baseTen = ${baseTen}`);
-  // console.log(`countClicks = ${countClicks}`);
-  // numberSection.textContent = `${baseTen}`;
-  // console.log(data.num1, data.num2, data.operation);  
-  // // numberSection.textContent = `${displayVal*baseTen}`;
+  })
   
-  if(data.operation !== ''){
-    data.num2 = displayVal;
-    // data.num2.push(displayVal);
-  } else{
-    // data.num1.push(displayVal);
-    data.num1 = displayVal;
-  }
-  console.log(`num1 = ${data.num1}\n num2 = ${data.num2}\n operation = ${data.operation}`);
+}
 
-});
 
-const n2 = document.querySelector('.num-2');
-n2.addEventListener('click', function(){
-  displayVal = 2;
-  numberSection.textContent = `${displayVal}`;
+
+
+
+
+
+
+
+
+
+
+// for (let i = 0; i < 10; i++) {
+// digit.addEventListener('click', function(){
+//   displayVal = `${i}`;
+//   numberSection.textContent = `${displayVal}`;
   
-  if(data.operation === 'op'){
-    data.num1.push(displayVal);
-  } else{
-    data.num2.push(displayVal);
-  }
-  console.log(data.num1, data.num2, data.operation);
-});
+//   if(data.operation === 'op'){
+//     data.num1.push(displayVal);
+//   } else{
+//     data.num2.push(displayVal);
+//   }
+//   console.log(data.num1, data.num2, data.operation);
+// });
+// }
 
-const n3 = document.querySelector('.num-3');
-n3.addEventListener('click', function(){
-  displayVal = 3;
-  numberSection.textContent = `${displayVal}`;
 
-  if(data.operation === 'op'){
-    data.num1.push(displayVal);
-  } else{
-    data.num2.push(displayVal);
-  }
-  console.log(data.num1, data.num2, data.operation);
-});
 
-const n4 = document.querySelector('.num-4');
-n4.addEventListener('click', function(){
-  displayVal = 4;
-  numberSection.textContent = `${displayVal}`;
 
-  if(data.operation === 'op'){
-    data.num1.push(displayVal);
-  } else{
-    data.num2.push(displayVal);
-  }
-  console.log(data.num1, data.num2, data.operation);
-});
 
-const n5 = document.querySelector('.num-5');
-n5.addEventListener('click', function(){
-  displayVal = 5;
-  numberSection.textContent = `${displayVal}`;
+// let countClicks = 0;
+// let baseTen = 0
 
-  if(data.operation === 'op'){
-    data.num1.push(displayVal);
-  } else{
-    data.num2.push(displayVal);
-  }
-  console.log(data.num1, data.num2, data.operation);
-});
-
-const n6 = document.querySelector('.num-6');
-n6.addEventListener('click', function(){
-  displayVal = 6;
+// const n1 = document.querySelector('.num-1');
+// n1.addEventListener('click', function(){
+//   displayVal = 1;
+//   // if(data.num2 === undefined){
+//   // }
+//   // data.num2 = baseTen;
+//   // baseTen += 10**countClicks;
+//   // data.num1.push(baseTen);
+//   // countClicks++;
+//   // console.log(`baseTen = ${baseTen}`);
+//   // console.log(`countClicks = ${countClicks}`);
+//   // numberSection.textContent = `${baseTen}`;
+//   // console.log(data.num1, data.num2, data.operation);  
+//   // // numberSection.textContent = `${displayVal*baseTen}`;
   
-  if(data.operation === 'op'){
-    data.num1.push(displayVal);
-  } else{
-    data.num2.push(displayVal);
-  }
-  console.log(data.num1, data.num2, data.operation);
-});
+//   if(data.operation !== ''){
+//     data.num2 = displayVal;
+//     // data.num2.push(displayVal);
+//   } else{
+//     // data.num1.push(displayVal);
+//     data.num1 = displayVal;
+//   }
+//   console.log(`num1 = ${data.num1}\n num2 = ${data.num2}\n operation = ${data.operation}`);
 
-const n7 = document.querySelector('.num-7');
-n7.addEventListener('click', function(){
-  displayVal = 7;
-  numberSection.textContent = `${displayVal}`;
+// });
+
+
+
+// const n3 = document.querySelector('.num-3');
+// n3.addEventListener('click', function(){
+//   displayVal = 3;
+//   numberSection.textContent = `${displayVal}`;
+
+//   if(data.operation === 'op'){
+//     data.num1.push(displayVal);
+//   } else{
+//     data.num2.push(displayVal);
+//   }
+//   console.log(data.num1, data.num2, data.operation);
+// });
+
+// const n4 = document.querySelector('.num-4');
+// n4.addEventListener('click', function(){
+//   displayVal = 4;
+//   numberSection.textContent = `${displayVal}`;
+
+//   if(data.operation === 'op'){
+//     data.num1.push(displayVal);
+//   } else{
+//     data.num2.push(displayVal);
+//   }
+//   console.log(data.num1, data.num2, data.operation);
+// });
+
+// const n5 = document.querySelector('.num-5');
+// n5.addEventListener('click', function(){
+//   displayVal = 5;
+//   numberSection.textContent = `${displayVal}`;
+
+//   if(data.operation === 'op'){
+//     data.num1.push(displayVal);
+//   } else{
+//     data.num2.push(displayVal);
+//   }
+//   console.log(data.num1, data.num2, data.operation);
+// });
+
+// const n6 = document.querySelector('.num-6');
+// n6.addEventListener('click', function(){
+//   displayVal = 6;
   
-  if(data.operation === 'op'){
-    data.num1.push(displayVal);
-  } else{
-    data.num2.push(displayVal);
-  }
-  console.log(data.num1, data.num2, data.operation);
-});
+//   if(data.operation === 'op'){
+//     data.num1.push(displayVal);
+//   } else{
+//     data.num2.push(displayVal);
+//   }
+//   console.log(data.num1, data.num2, data.operation);
+// });
 
-const n8 = document.querySelector('.num-8');
-n8.addEventListener('click', function(){
-  displayVal = 8;
-  numberSection.textContent = `${displayVal}`;
+// const n7 = document.querySelector('.num-7');
+// n7.addEventListener('click', function(){
+//   displayVal = 7;
+//   numberSection.textContent = `${displayVal}`;
+  
+//   if(data.operation === 'op'){
+//     data.num1.push(displayVal);
+//   } else{
+//     data.num2.push(displayVal);
+//   }
+//   console.log(data.num1, data.num2, data.operation);
+// });
 
-  if(data.operation === 'op'){
-    data.num1.push(displayVal);
-  } else{
-    data.num2.push(displayVal);
-  }
-  console.log(data.num1, data.num2, data.operation);
-});
+// const n8 = document.querySelector('.num-8');
+// n8.addEventListener('click', function(){
+//   displayVal = 8;
+//   numberSection.textContent = `${displayVal}`;
 
-const n9 = document.querySelector('.num-9');
-n9.addEventListener('click', function(){
-  displayVal = 9;
-  numberSection.textContent = `${displayVal}`;
+//   if(data.operation === 'op'){
+//     data.num1.push(displayVal);
+//   } else{
+//     data.num2.push(displayVal);
+//   }
+//   console.log(data.num1, data.num2, data.operation);
+// });
+
+// const n9 = document.querySelector('.num-9');
+// n9.addEventListener('click', function(){
+//   displayVal = 9;
+//   numberSection.textContent = `${displayVal}`;
 
   
-  if(data.operation === 'op'){
-    data.num1.push(displayVal);
-  } else{
-    data.num2.push(displayVal);
-  }
-  console.log(data.num1, data.num2, data.operation);
-});
+//   if(data.operation === 'op'){
+//     data.num1.push(displayVal);
+//   } else{
+//     data.num2.push(displayVal);
+//   }
+//   console.log(data.num1, data.num2, data.operation);
+// });
