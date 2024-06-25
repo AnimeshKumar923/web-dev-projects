@@ -13,10 +13,10 @@ for (let i = 7; i <= 9; i++) {
   rowOne.appendChild(numbers);
 }
 
-const opsDiv4 = document.createElement('button');
-opsDiv4.classList.add(`division`);
-opsDiv4.textContent = `/`;
-rowOne.appendChild(opsDiv4);
+const division = document.createElement('button');
+division.classList.add(`division`);
+division.textContent = `/`;
+rowOne.appendChild(division);
 
 // ---------------------------
 
@@ -29,10 +29,10 @@ for (let i = 4; i <= 6; i++) {
   rowTwo.appendChild(numbers);
 }
 
-const opsDiv3 = document.createElement('button');
-opsDiv3.classList.add(`multiplication`);
-opsDiv3.textContent = `*`;
-rowTwo.appendChild(opsDiv3);
+const multiplication = document.createElement('button');
+multiplication.classList.add(`multiplication`);
+multiplication.textContent = `*`;
+rowTwo.appendChild(multiplication);
 
 // -------------------------
 
@@ -46,10 +46,10 @@ for (let i = 1; i <= 3; i++) {
   rowThree.appendChild(numbers);
 }
 
-const opsDiv2 = document.createElement('button');
-opsDiv2.classList.add(`subtraction`);
-opsDiv2.textContent = `-`;
-rowThree.appendChild(opsDiv2);
+const subtraction = document.createElement('button');
+subtraction.classList.add(`subtraction`);
+subtraction.textContent = `-`;
+rowThree.appendChild(subtraction);
 
 // ---------------------------
 
@@ -66,10 +66,10 @@ zero.classList.add(`num-0`);
 zero.textContent = `0`;
 rowFour.appendChild(zero);
 
-const opsDiv1 = document.createElement('button');
-opsDiv1.classList.add(`addition`);
-opsDiv1.textContent = `+`;
-rowFour.appendChild(opsDiv1);
+const addition = document.createElement('button');
+addition.classList.add(`addition`);
+addition.textContent = `+`;
+rowFour.appendChild(addition);
 
 const equal = document.createElement('button');
 equal.classList.add(`equal`);
@@ -136,14 +136,14 @@ function operate(operator){
 // ------ CALCULATION LOGIC ---------
 
 let data = {
-  num1: [],
-  num2: [],
-  operation: `op`
+  num1: ``,
+  num2: ``,
+  operation: ``
 }
 
 function clearData(){
-data.num1 = data.num2 = [];
-data.operation = `op`;
+data.num1 = data.num2 = ``;
+data.operation = ``;
 numberSection.textContent = `start`;
 countClicks = 0;
 baseTen = 0;
@@ -166,25 +166,25 @@ numberSection.textContent = `start`;
 
 const operatorDisplay = document.querySelector('.operator');
 
-opsDiv1.addEventListener('click', function(){
+addition.addEventListener('click', function(){
   operation = `+`;
   operatorDisplay.textContent = `${operation}`;
   data.operation = operation;
 })
 
-opsDiv2.addEventListener('click', function(){
+subtraction.addEventListener('click', function(){
   operation = `-`;
   operatorDisplay.textContent = `${operation}`;
   data.operation = operation;
 })
 
-opsDiv3.addEventListener('click', function(){
+multiplication.addEventListener('click', function(){
   operation = `*`;
   operatorDisplay.textContent = `${operation}`;
   data.operation = operation;
 })
 
-opsDiv4.addEventListener('click', function(){
+division.addEventListener('click', function(){
   operation = `/`;
   operatorDisplay.textContent = `${operation}`;
   data.operation = operation;
@@ -207,7 +207,6 @@ const n0 = document.querySelector('.num-0');
 n0.addEventListener('click', function(){
   displayVal = 0;
   numberSection.textContent = `${displayVal}`;
-  // console.log('zero clicked')
   if(data.num2 === undefined){
     data.num1 = displayVal;
   }
@@ -222,19 +221,27 @@ let baseTen = 0
 
 const n1 = document.querySelector('.num-1');
 n1.addEventListener('click', function(){
-  // displayVal = 1;
+  displayVal = 1;
   // if(data.num2 === undefined){
   // }
   // data.num2 = baseTen;
-  baseTen += 10**countClicks;
-  data.num1.push(baseTen);
-  countClicks++;
-  console.log(`baseTen = ${baseTen}`);
-  console.log(`countClicks = ${countClicks}`);
-  numberSection.textContent = `${baseTen}`;
-  console.log(data.num1, data.num2, data.operation);  
-  // numberSection.textContent = `${displayVal*baseTen}`;
+  // baseTen += 10**countClicks;
+  // data.num1.push(baseTen);
+  // countClicks++;
+  // console.log(`baseTen = ${baseTen}`);
+  // console.log(`countClicks = ${countClicks}`);
+  // numberSection.textContent = `${baseTen}`;
+  // console.log(data.num1, data.num2, data.operation);  
+  // // numberSection.textContent = `${displayVal*baseTen}`;
   
+  if(data.operation !== ''){
+    data.num2 = displayVal;
+    // data.num2.push(displayVal);
+  } else{
+    // data.num1.push(displayVal);
+    data.num1 = displayVal;
+  }
+  console.log(`num1 = ${data.num1}\n num2 = ${data.num2}\n operation = ${data.operation}`);
 
 });
 
@@ -243,8 +250,11 @@ n2.addEventListener('click', function(){
   displayVal = 2;
   numberSection.textContent = `${displayVal}`;
   
-  data.num1.push(displayVal);
-  // data.num2.push(displayVal);
+  if(data.operation === 'op'){
+    data.num1.push(displayVal);
+  } else{
+    data.num2.push(displayVal);
+  }
   console.log(data.num1, data.num2, data.operation);
 });
 
@@ -253,8 +263,11 @@ n3.addEventListener('click', function(){
   displayVal = 3;
   numberSection.textContent = `${displayVal}`;
 
-  data.num1.push(displayVal);
-  // data.num2.push(displayVal);
+  if(data.operation === 'op'){
+    data.num1.push(displayVal);
+  } else{
+    data.num2.push(displayVal);
+  }
   console.log(data.num1, data.num2, data.operation);
 });
 
@@ -263,8 +276,11 @@ n4.addEventListener('click', function(){
   displayVal = 4;
   numberSection.textContent = `${displayVal}`;
 
-  data.num1.push(displayVal);
-  // data.num2.push(displayVal);
+  if(data.operation === 'op'){
+    data.num1.push(displayVal);
+  } else{
+    data.num2.push(displayVal);
+  }
   console.log(data.num1, data.num2, data.operation);
 });
 
@@ -273,8 +289,11 @@ n5.addEventListener('click', function(){
   displayVal = 5;
   numberSection.textContent = `${displayVal}`;
 
-  data.num1.push(displayVal);
-  // data.num2.push(displayVal);
+  if(data.operation === 'op'){
+    data.num1.push(displayVal);
+  } else{
+    data.num2.push(displayVal);
+  }
   console.log(data.num1, data.num2, data.operation);
 });
 
@@ -282,8 +301,11 @@ const n6 = document.querySelector('.num-6');
 n6.addEventListener('click', function(){
   displayVal = 6;
   
-  data.num1.push(displayVal);
-  // data.num2.push(displayVal);
+  if(data.operation === 'op'){
+    data.num1.push(displayVal);
+  } else{
+    data.num2.push(displayVal);
+  }
   console.log(data.num1, data.num2, data.operation);
 });
 
@@ -292,8 +314,11 @@ n7.addEventListener('click', function(){
   displayVal = 7;
   numberSection.textContent = `${displayVal}`;
   
-  data.num1.push(displayVal);
-  // data.num2.push(displayVal);
+  if(data.operation === 'op'){
+    data.num1.push(displayVal);
+  } else{
+    data.num2.push(displayVal);
+  }
   console.log(data.num1, data.num2, data.operation);
 });
 
@@ -302,8 +327,11 @@ n8.addEventListener('click', function(){
   displayVal = 8;
   numberSection.textContent = `${displayVal}`;
 
-  data.num1.push(displayVal);
-  // data.num2.push(displayVal);
+  if(data.operation === 'op'){
+    data.num1.push(displayVal);
+  } else{
+    data.num2.push(displayVal);
+  }
   console.log(data.num1, data.num2, data.operation);
 });
 
@@ -313,10 +341,10 @@ n9.addEventListener('click', function(){
   numberSection.textContent = `${displayVal}`;
 
   
-  if(data.operation !== 'op'){
-    data.num2.push(displayVal);
-  } else{
+  if(data.operation === 'op'){
     data.num1.push(displayVal);
+  } else{
+    data.num2.push(displayVal);
   }
   console.log(data.num1, data.num2, data.operation);
 });
