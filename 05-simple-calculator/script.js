@@ -90,12 +90,7 @@ rowFive.appendChild(clearBtn);
 
 // -------- OPERATIONS LOGIC --------
 
-// let num1, num2, operation;
-
 function add(num1, num2){
-  // num1 = Number(num1);
-  // num2 = Number(num2);
-  // strToNumber(num1, num2);
   return strToNumber(num1) + strToNumber(num2);
 }
 
@@ -115,8 +110,6 @@ function divide(num1, num2){
   return strToNumber(num1) / strToNumber(num2);
 }
 
-// console.log(add(5, 10), subtract(5, 10), multiply(5, 10), divide(5, 10));
-
 let result;
 
 // convert string to number
@@ -126,20 +119,23 @@ function strToNumber(n1){
 
 function operate(operator){
   if(data.num2 === ''){
-    alert('enter 2nd operand');
+    alert('enter both operands');
   }
   switch (operator) {
     case '+':
       result = add(data.num1, data.num2);
       numberSection.textContent = result;
+      data.num1 = result;
       break;
     case '-':
       result = subtract(data.num1, data.num2);
       numberSection.textContent = result;
+      data.num1 = result;
       break;
     case '*':
       result = Math.round(multiply(data.num1, data.num2)* 100) / 100;      
       numberSection.textContent = result;
+      data.num1 = result;
       break;
     case '/':
       result = Math.round(divide(data.num1, data.num2) * 100) / 100;
@@ -147,11 +143,12 @@ function operate(operator){
         numberSection.textContent = `PLS DON'T CREATE ONE...`;
       }else{
         numberSection.textContent = result;
+        data.num1 = result;
       }
       break;
-    default:
-      alert('not a valid operation')
-      break;
+    // default:
+    //   alert('enter values first')
+    //   break;
   }
 }
 
@@ -171,7 +168,7 @@ data.num1 = data.num2 = '';
 data.operand = '';
 numberSection.textContent = 'start';
 operatorDisplay.textContent = '';
-
+countClicks = 0;
 console.clear();
 
 }
@@ -194,29 +191,40 @@ addition.addEventListener('click', function(){
   operation = `+`;
   operatorDisplay.textContent = `${operation}`;
   data.operand = operation;
+  console.log(`num1 = ${data.num1}, num2 = ${data.num2}, operand = ${data.operand}`);
 })
 
 subtraction.addEventListener('click', function(){
   operation = `-`;
   operatorDisplay.textContent = `${operation}`;
   data.operand = operation;
+  console.log(`num1 = ${data.num1}, num2 = ${data.num2}, operand = ${data.operand}`);
 })
 
 multiplication.addEventListener('click', function(){
   operation = `*`;
   operatorDisplay.textContent = `${operation}`;
   data.operand = operation;
+  console.log(`num1 = ${data.num1}, num2 = ${data.num2}, operand = ${data.operand}`);
 })
 
 division.addEventListener('click', function(){
   operation = `/`;
   operatorDisplay.textContent = `${operation}`;
   data.operand = operation;
+  console.log(`num1 = ${data.num1}, num2 = ${data.num2}, operand = ${data.operand}`);
 })
 
+// operate function
+
 equal.addEventListener('click', function(){
+  if(data.num2 === '' || data.operand === ''){
+  }
   operate(data.operand);
-  
+  data.operand = '';
+  data.num2 = ''
+  console.log(`num1 = ${data.num1}, num2 = ${data.num2}, operand = ${data.operand}`);
+  operatorDisplay.textContent = '';
 })
 
 clearBtn.addEventListener('click', function(){
@@ -229,7 +237,7 @@ clearBtn.addEventListener('click', function(){
 const digit = document.querySelectorAll('.digit');
 
 for (let i = 0; i < digit.length; i++) {
-  digit[i].addEventListener('click', function(){
+  digit[i].addEventListener('click', function(){    
     displayVal = `${digit[i].textContent}`;
     
     if(data.operand === ''){
