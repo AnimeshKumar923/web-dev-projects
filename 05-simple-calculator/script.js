@@ -93,29 +93,43 @@ rowFive.appendChild(clearBtn);
 // let num1, num2, operation;
 
 function add(num1, num2){
-  return num1 + num2;
+  // num1 = Number(num1);
+  // num2 = Number(num2);
+  // strToNumber(num1, num2);
+  return strToNumber(num1) + strToNumber(num2);
 }
 
 function subtract(num1, num2){
-  return num1 - num2;
+  return strToNumber(num1) - strToNumber(num2);
 }
 
 function multiply(num1, num2){
-  return num1 * num2;
+  return strToNumber(num1) * strToNumber(num2);
 }
 
 function divide(num1, num2){
-  return num1 / num2;
+  if(num2 == 0){
+    alert('ARE YOU TRYING TO CREATE A BLACK HOLE!')
+
+  }
+  return strToNumber(num1) / strToNumber(num2);
 }
 
 // console.log(add(5, 10), subtract(5, 10), multiply(5, 10), divide(5, 10));
 
 let result;
 
+// convert string to number
+function strToNumber(n1){
+  return Number(n1);
+}
+
 function operate(operator){
+  if(data.num2 === ''){
+    alert('enter 2nd operand');
+  }
   switch (operator) {
     case '+':
-
       result = add(data.num1, data.num2);
       numberSection.textContent = result;
       break;
@@ -129,7 +143,11 @@ function operate(operator){
       break;
     case '/':
       result = Math.round(divide(data.num1, data.num2) * 100) / 100;
-      numberSection.textContent = result;
+      if(result === Infinity){
+        numberSection.textContent = `PLS DON'T CREATE ONE...`;
+      }else{
+        numberSection.textContent = result;
+      }
       break;
     default:
       alert('not a valid operation')
