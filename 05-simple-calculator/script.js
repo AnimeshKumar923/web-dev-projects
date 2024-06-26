@@ -110,20 +110,26 @@ function divide(num1, num2){
 
 // console.log(add(5, 10), subtract(5, 10), multiply(5, 10), divide(5, 10));
 
+let result;
 
 function operate(operator){
   switch (operator) {
     case '+':
-      numberSection.textContent = add(data.num1, data.num2);
+
+      result = add(data.num1, data.num2);
+      numberSection.textContent = result;
       break;
     case '-':
-      numberSection.textContent = subtract(data.num1, data.num2);
+      result = subtract(data.num1, data.num2);
+      numberSection.textContent = result;
       break;
     case '*':
-      numberSection.textContent = multiply(data.num1, data.num2);
+      result = Math.round(multiply(data.num1, data.num2)* 100) / 100;      
+      numberSection.textContent = result;
       break;
     case '/':
-      numberSection.textContent = divide(data.num1, data.num2);
+      result = Math.round(divide(data.num1, data.num2) * 100) / 100;
+      numberSection.textContent = result;
       break;
     default:
       alert('not a valid operation')
@@ -135,18 +141,18 @@ function operate(operator){
 
 // ------ CALCULATION LOGIC ---------
 
+// object to store the data
 let data = {
-  num1: ``,
-  num2: ``,
-  operand: ``
+  num1: '',
+  num2: '',
+  operand: ''
 }
 
 function clearData(){
-data.num1 = data.num2 = ``;
-data.operand = ``;
-numberSection.textContent = `start`;
-countClicks = 0;
-baseTen = 0;
+data.num1 = data.num2 = '';
+data.operand = '';
+numberSection.textContent = 'start';
+operatorDisplay.textContent = '';
 
 console.clear();
 
@@ -207,15 +213,16 @@ const digit = document.querySelectorAll('.digit');
 for (let i = 0; i < digit.length; i++) {
   digit[i].addEventListener('click', function(){
     displayVal = `${digit[i].textContent}`;
-    numberSection.textContent = `${displayVal}`;
     
-    if(data.operation === 'op'){
-      data.num1.push(displayVal);
+    if(data.operand === ''){
+      data.num1 += displayVal;
+      numberSection.textContent = `${data.num1}`;
     } else{
-      data.num2.push(displayVal);
+      data.num2 += displayVal;
+      numberSection.textContent = `${data.num2}`;
     }
-    console.log(data.num1, data.num2, data.operation);
-
+    console.log(`num1 = ${data.num1}, num2 = ${data.num2}, operand = ${data.operand}`);
+    
   })
   
 }
