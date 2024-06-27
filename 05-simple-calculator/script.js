@@ -133,12 +133,12 @@ function operate(operator){
       data.num1 = result;
       break;
     case '*':
-      result = Math.round(multiply(data.num1, data.num2)* 100) / 100;      
+      result = Math.round(multiply(data.num1, data.num2)* 10000) / 10000;      
       numberSection.textContent = result;
       data.num1 = result;
       break;
     case '/':
-      result = Math.round(divide(data.num1, data.num2) * 100) / 100;
+      result = Math.round(divide(data.num1, data.num2) * 10000) / 10000;
       if(result === Infinity){
         numberSection.textContent = `PLS DON'T CREATE ONE...`;
       }else{
@@ -241,9 +241,34 @@ for (let i = 0; i < digit.length; i++) {
     displayVal = `${digit[i].textContent}`;
     
     if(data.operand === ''){
+      // let decimalCount = 0;
+      decimal.addEventListener('click', function(){
+        if(data.num1 === '' && data.num2 === ''){
+         alert('enter a number first');
+        } else{
+          if(checkDecimal(data.num1) === false){
+            data.num1 += decimal.textContent;
+          }
+
+          // console.log(`deciaml count = ${decimalCount}`);
+          console.log(`num1 = ${data.num1}, num2 = ${data.num2}, operand = ${data.operand}`);
+        }
+      })
       data.num1 += displayVal;
       numberSection.textContent = `${data.num1}`;
     } else{
+      decimal.addEventListener('click', function(){
+        if(data.num1 === '' && data.num2 === ''){
+         alert('enter a number first');
+        } else{
+          if(checkDecimal(data.num2) === false){
+            data.num2 += decimal.textContent;
+          }
+
+          // console.log(`deciaml count = ${decimalCount}`);
+          console.log(`num1 = ${data.num1}, num2 = ${data.num2}, operand = ${data.operand}`);
+        }
+      })
       data.num2 += displayVal;
       numberSection.textContent = `${data.num2}`;
     }
@@ -251,4 +276,13 @@ for (let i = 0; i < digit.length; i++) {
     
   })
   
+}
+
+
+// decimal case
+function checkDecimal(n){
+  // console.log(n);
+  console.log(`type of n = ${typeof n}`);
+  if(typeof n == 'number') return true;
+  return n.includes('.');
 }
