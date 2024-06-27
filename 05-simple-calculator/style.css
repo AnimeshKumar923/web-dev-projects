@@ -52,15 +52,29 @@ body{
 }
 
 .clear-btn{
-  font-size: 50px; 
+  font-size: 40px; 
   border: solid firebrick 3px; padding: 5px; 
-  width: 250px; 
+  width: 150px; 
   background-color: gold; 
   margin: 5px; 
   border-radius: 12px; 
   cursor: pointer 
 }
 .clear-btn:hover {
+  background-color: bisque;
+  transition: background-color 0.3s;
+}
+
+.backspace-btn{
+  font-size: 40px; 
+  border: solid firebrick 3px; padding: 5px; 
+  width: 150px; 
+  background-color: gold; 
+  margin: 5px; 
+  border-radius: 12px; 
+  cursor: pointer 
+}
+.backspace-btn:hover {
   background-color: bisque;
   transition: background-color 0.3s;
 }

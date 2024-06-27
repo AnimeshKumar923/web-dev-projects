@@ -84,8 +84,13 @@ rowFour.appendChild(equal);
 
 const clearBtn = document.createElement('button');
 clearBtn.classList.add(`clear-btn`);
-clearBtn.textContent = `clear`;  
+clearBtn.textContent = `AC`;  
 rowFive.appendChild(clearBtn);
+
+const backspaceBtn = document.createElement('button');
+backspaceBtn.classList.add('backspace-btn');
+backspaceBtn.textContent = `CE`;
+rowFive.appendChild(backspaceBtn);
 
 
 // -------- OPERATIONS LOGIC --------
@@ -133,12 +138,12 @@ function operate(operator){
       data.num1 = result;
       break;
     case '*':
-      result = Math.round(multiply(data.num1, data.num2)* 10000) / 10000;      
+      result = Math.round(multiply(data.num1, data.num2)* 100000) / 100000;      
       numberSection.textContent = result;
       data.num1 = result;
       break;
     case '/':
-      result = Math.round(divide(data.num1, data.num2) * 10000) / 10000;
+      result = Math.round(divide(data.num1, data.num2) * 100000) / 100000;
       if(result === Infinity){
         numberSection.textContent = `PLS DON'T CREATE ONE...`;
       }else{
@@ -168,8 +173,7 @@ data.num1 = data.num2 = '';
 data.operand = '';
 numberSection.textContent = 'start';
 operatorDisplay.textContent = '';
-countClicks = 0;
-console.clear();
+// console.clear();
 
 }
 
@@ -247,7 +251,7 @@ for (let i = 0; i < digit.length; i++) {
          alert('enter a number first');
         } else{
           if(checkDecimal(data.num1) === false){
-            data.num1 += decimal.textContent;
+            data.num1 += decimal.textContent;numberSection.textContent = `${data.num1}`;
           }
 
           // console.log(`deciaml count = ${decimalCount}`);
@@ -261,8 +265,8 @@ for (let i = 0; i < digit.length; i++) {
         if(data.num1 === '' && data.num2 === ''){
          alert('enter a number first');
         } else{
-          if(checkDecimal(data.num2) === false){
-            data.num2 += decimal.textContent;
+          if(checkDecimal(data.num2) === false && data.num2 !== ''){
+            data.num2 += decimal.textContent;numberSection.textContent = `${data.num2}`;
           }
 
           // console.log(`deciaml count = ${decimalCount}`);
@@ -279,6 +283,12 @@ for (let i = 0; i < digit.length; i++) {
 }
 
 
+/**
+ * Return true/false depending upon the input provided
+ * @param {} n - takes input and checks for decimal present in the number or string
+ * @returns boolean value
+ */
+
 // decimal case
 function checkDecimal(n){
   // console.log(n);
@@ -286,3 +296,34 @@ function checkDecimal(n){
   if(typeof n == 'number') return true;
   return n.includes('.');
 }
+
+// Backspace logic
+
+backspaceBtn.addEventListener('click', function(){
+  if(data.num1 === '' && data.num2 === ''){
+    alert('no more digits to remove');
+  } else{
+    if(data.num2 === ''){
+      data.num1 = removeLastElement(data.num1);
+      numberSection.textContent = `${data.num1}`;
+      console.log(`num1 = ${data.num1}, num2 = ${data.num2}, operand = ${data.operand}`);
+    } else{
+      data.num2 = removeLastElement(data.num2);
+      numberSection.textContent = `${data.num2}`;
+      console.log(`num1 = ${data.num1}, num2 = ${data.num2}, operand = ${data.operand}`);
+    }
+  }
+})
+
+/**
+ * Returns a copy of string with last element removed.
+ * @param data Accepts the incoming value in the string format 
+ * @returns string with last element removed
+ */ 
+
+function removeLastElement(data){
+  return data.slice(0, -1);
+}
+
+
+// include special prompt for 80085
