@@ -240,10 +240,9 @@ clearBtn.addEventListener('click', function(){
 
 const digit = document.querySelectorAll('.digit');
 
-for (let i = 0; i < digit.length; i++) {
-  digit[i].addEventListener('click', function(){    
-    displayVal = `${digit[i].textContent}`;
-    
+Array.from(digit).forEach(item => {
+  item.addEventListener('click', function(){    
+    displayVal = `${item.textContent}`;
     if(data.operand === ''){
       // let decimalCount = 0;
       decimal.addEventListener('click', function(){
@@ -251,10 +250,9 @@ for (let i = 0; i < digit.length; i++) {
          alert('enter a number first');
         } else{
           if(checkDecimal(data.num1) === false){
-            data.num1 += decimal.textContent;numberSection.textContent = `${data.num1}`;
+            data.num1 += decimal.textContent;
+            numberSection.textContent = `${data.num1}`;
           }
-
-          // console.log(`deciaml count = ${decimalCount}`);
           console.log(`num1 = ${data.num1}, num2 = ${data.num2}, operand = ${data.operand}`);
         }
       })
@@ -266,10 +264,9 @@ for (let i = 0; i < digit.length; i++) {
          alert('enter a number first');
         } else{
           if(checkDecimal(data.num2) === false && data.num2 !== ''){
-            data.num2 += decimal.textContent;numberSection.textContent = `${data.num2}`;
+            data.num2 += decimal.textContent;
+            numberSection.textContent = `${data.num2}`;
           }
-
-          // console.log(`deciaml count = ${decimalCount}`);
           console.log(`num1 = ${data.num1}, num2 = ${data.num2}, operand = ${data.operand}`);
         }
       })
@@ -277,15 +274,13 @@ for (let i = 0; i < digit.length; i++) {
       numberSection.textContent = `${data.num2}`;
     }
     console.log(`num1 = ${data.num1}, num2 = ${data.num2}, operand = ${data.operand}`);
-    
   })
-  
-}
+})
 
 
 /**
  * Return true/false depending upon the input provided
- * @param {} n - takes input and checks for decimal present in the number or string
+ * @param n - takes input and checks for decimal present in the number or string
  * @returns boolean value
  */
 
@@ -298,6 +293,7 @@ function checkDecimal(n){
 }
 
 // Backspace logic
+
 
 backspaceBtn.addEventListener('click', function(){
   if(data.num1 === '' && data.num2 === ''){
@@ -325,5 +321,78 @@ function removeLastElement(data){
   return data.slice(0, -1);
 }
 
+// KEYBOARD SUPPORT
+
+// for (let i = 0; i < digit.length; i++) {
+//   // console.log(digit);
+//   digit[i].addEventListener('keydown', function(event){
+//     displayVal = `${digit[i].textContent}`;
+//     console.log(`key = ${event.key}`);  
+//   })
+// }
+
+Array.from(digit).forEach(item => {
+  item.addEventListener('keydown', function(event){
+    let keyName = event.key;
+    console.log(`text content = ${item.textContent}`);
+    console.log(`keyname = ${keyName}`);
+    if(keyName === item.textContent){
+        displayVal = item.textContent;
+    }
+  })
+});
+
+
+// ['click','ontouchstart'].forEach( evt => 
+//   digit.addEventListener(evt, display(), false)
+// );
+
+
+
+/** 
+for (let i = 0; i < digit.length; i++) {
+  digit[i].addEventListener('keydown', function(event){    
+    displayVal = `${digit[i].textContent}`;
+    
+    if(data.operand === ''){
+      // let decimalCount = 0;
+      decimal.addEventListener('click', function(){
+        if(data.num1 === '' && data.num2 === ''){
+         alert('enter a number first');
+        } else{
+          if(checkDecimal(data.num1) === false){
+            data.num1 += decimal.textContent;
+            numberSection.textContent = `${data.num1}`;
+          }
+
+          // console.log(`deciaml count = ${decimalCount}`);
+          console.log(`num1 = ${data.num1}, num2 = ${data.num2}, operand = ${data.operand}`);
+        }
+      })
+      data.num1 += displayVal;
+      numberSection.textContent = `${data.num1}`;
+    } else{
+      decimal.addEventListener('click', function(){
+        if(data.num1 === '' && data.num2 === ''){
+         alert('enter a number first');
+        } else{
+          if(checkDecimal(data.num2) === false && data.num2 !== ''){
+            data.num2 += decimal.textContent;
+            numberSection.textContent = `${data.num2}`;
+          }
+
+          // console.log(`deciaml count = ${decimalCount}`);
+          console.log(`num1 = ${data.num1}, num2 = ${data.num2}, operand = ${data.operand}`);
+        }
+      })
+      data.num2 += displayVal;
+      numberSection.textContent = `${data.num2}`;
+    }
+    console.log(`num1 = ${data.num1}, num2 = ${data.num2}, operand = ${data.operand}`);
+    
+  })
+  
+}
+*/
 
 // include special prompt for 80085
