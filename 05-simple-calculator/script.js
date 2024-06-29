@@ -106,16 +106,16 @@ Array.from(operation).forEach(item => {
 
 function decideOperator(item){
   // console.log(`type of item = ${typeof item}`)
-  if(item === Object){
-    if(item.textContent === '+' || item.textContent === '-' || item.textContent === '*' || item.textContent === '/'){
-      operatorDisplay.textContent = item.textContent;
-      data.operator = item.textContent;
-      console.log(`num1 = ${data.num1}, num2 = ${data.num2}, operation = ${data.operator}`);
-    }
-  } else{
+  if(typeof item === "string"){
     if(item === '+' || item === '-' || item === '*' || item === '/'){
       operatorDisplay.textContent = item;
       data.operator = item;
+      console.log(`num1 = ${data.num1}, num2 = ${data.num2}, operation = ${data.operator}`);
+    }
+  } else{
+    if(item.textContent === '+' || item.textContent === '-' || item.textContent === '*' || item.textContent === '/'){
+      operatorDisplay.textContent = item.textContent;
+      data.operator = item.textContent;
       console.log(`num1 = ${data.num1}, num2 = ${data.num2}, operation = ${data.operator}`);
     }
   }
@@ -124,12 +124,16 @@ function decideOperator(item){
 
 // operate function
 
-equal.addEventListener('click', function(){
-  operate(data.operator);
+function resetValues(){
   data.operator = '';
   data.num2 = ''
-  console.log(`num1 = ${data.num1}, num2 = ${data.num2}, operator = ${data.operator}`);
   operatorDisplay.textContent = '';
+}
+
+equal.addEventListener('click', function(){
+  operate(data.operator);
+  resetValues();
+  console.log(`num1 = ${data.num1}, num2 = ${data.num2}, operator = ${data.operator}`);
 })
 
 clearBtn.addEventListener('click', function(){
@@ -158,11 +162,9 @@ function updateDisplayAndData(item, keyName) {
     displayVal = item.textContent;
   }
     if(data.operator === ''){
-      putDecimal();
       data.num1 += displayVal;
       numberSection.textContent = data.num1;
     } else{
-      putDecimal();
       data.num2 += displayVal;
       numberSection.textContent = data.num2;
     }
@@ -174,18 +176,21 @@ function updateDisplayAndData(item, keyName) {
  */
 
 function putDecimal(){
-  decimal.addEventListener('click', function(){
-    if(data.num1 === '' && data.num2 === ''){
-     alert('enter a number first');
-    } else{
-      if(!checkDecimal(data.num1)){
-        data.num1 += decimal.textContent;
-        numberSection.textContent = data.num1;
-      }
-      console.log(`num1 = ${data.num1}, num2 = ${data.num2}, operator = ${data.operator}`);
-    }
-  })
+  if(!checkDecimal(data.num1) && data.operator === ''){
+    data.num1 += decimal.textContent;
+    numberSection.textContent = data.num1;
+  } else{
+    data.num2 += decimal.textContent;
+    numberSection.textContent = data.num2;
+
+  }
+  
+  console.log(`num1 = ${data.num1}, num2 = ${data.num2}, operator = ${data.operator}`);
 }
+
+decimal.addEventListener('click', function(){
+  putDecimal();
+})
 
 
 /**
@@ -249,13 +254,16 @@ window.addEventListener('keydown', function(event){
 
   if(event.key === '+' || event.key === '-' || event.key === '*' || event.key === '/') decideOperator(event.key);
 
-  if(event.key === 'Enter') operate(operatorDisplay.textContent);
+  if(event.key === 'Enter'){
+    operate(operatorDisplay.textContent);
+    resetValues();
+  } 
 
   if(event.key === 'Backspace') backSpace();
 
   if(event.key === '.') putDecimal();
 
-  // if(event.key)
+  if(event.key === 'Escape') clearData();
 })
 
 
