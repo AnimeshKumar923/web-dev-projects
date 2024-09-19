@@ -1,12 +1,28 @@
+/* custom fonts */
+
+@font-face {
+  font-family: 'norsebold';
+  src: url('assets/norse-bold-webfont.woff2') format('woff2'),
+       url('assets/norse-bold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+/* Fonts END */
+
+
 .main {
   display: flex;
   flex-direction: row;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .background-img {
   border: 5px solid black;
-  height: 100vh;
+  height: 130vh;
   width: 100vw;
+  background-image: url(assets/wallpaper.jpeg);
 }
 
 .content {
@@ -22,6 +38,9 @@
   border: 5px solid magenta;
   display: flex;
   flex: 1 1 auto;
+  justify-content: center;
+  align-items: center;
+  font-size: larger;
 }
 
 .login {
@@ -33,8 +52,9 @@
 }
 
 form {
-  /* max-width: 400px; */
+  border: 2px solid ;
   margin: 0 auto;
+  padding-right: 50px;
   background-color:antiquewhite;
   display: flex;
   flex-wrap: wrap;
