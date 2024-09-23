@@ -52,14 +52,50 @@
 }
 
 form {
-  border: 2px solid ;
-  margin: 0 auto;
-  padding-right: 50px;
+  border: 1px solid rebeccapurple;
+  margin: 20px;
+  padding: 10px;
   background-color:antiquewhite;
   display: flex;
   flex-wrap: wrap;
+  box-sizing: border-box;
+  box-shadow: 5px 5px 5px rgb(48, 2, 2);
 }
 
-input[type="submit"] {
-  
+.fname, .lname, .email, .phone, .pass, .confirm-pass {
+  float:left;
+  margin-right:50px;
+  margin-top: 5px;
+}
+
+
+.form-box h2 {
+  margin-left: 20px;
+  margin-bottom: 40px;
+  display: flex;
+  box-shadow: 5px;
+}
+
+button,
+label,
+input,
+select,
+progress,
+meter {
+  display: block;
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 5px;
+  height: 30px;
+}
+
+.submit-btn > button{
+  width: auto;
+  margin: 0 auto;
+  display: inline-block;
+  background-color: #4CAF50; /* Green background */
+  color: rgb(255, 255, 255);
 }
