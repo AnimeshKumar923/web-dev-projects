@@ -31,11 +31,11 @@
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
-  border: 5px solid yellowgreen;
+  /* border: 5px solid yellowgreen; */
 }
 
 .heading {
-  border: 5px solid magenta;
+  /* border: 5px solid magenta; */
   display: flex;
   flex: 1 1 auto;
   justify-content: center;
@@ -44,11 +44,13 @@
 }
 
 .login {
-  border: 5px solid salmon;
-  display: flex;
+  /* border: 5px solid salmon; */
+  display: inline-block;
   /* flex: 1 1 auto; */
-  margin-bottom: 80px;
-  margin-top: 10px;
+  /* margin-bottom: 80px; */
+  margin-top: 20px;
+  margin-left: 15px;
+  margin-left: 15px;
 }
 
 form {
@@ -78,10 +80,7 @@ form {
 
 button,
 label,
-input,
-select,
-progress,
-meter {
+input{
   display: block;
   font-family: inherit;
   font-size: 100%;
@@ -90,12 +89,37 @@ meter {
   width: 100%;
   padding: 5px;
   height: 30px;
+  border-radius: 4px;
 }
 
 .submit-btn > button{
   width: auto;
-  margin: 0 auto;
+  margin-left: 25px;
   display: inline-block;
-  background-color: #4CAF50; /* Green background */
+  background-color: #0e7c12; /* Green background */
   color: rgb(255, 255, 255);
+  border-radius: 5px;
+}
+
+.login > a:link{
+  color: #0ace11;
+}
+
+.login > a:visited{
+  color: #025004;
+}
+
+.login > a:hover{
+  color: rgb(10, 170, 170);
+}
+
+input[type="password"]:invalid {
+  border-color: #ff4d4d; /* Red border for invalid input */
+  background-color: #ffe6e6; /* Light red background */
+}
+
+/* Style when the input is valid */
+input[type="password"]:valid {
+  border-color: #4CAF50; /* Green border for valid input */
+  background-color: #e6ffe6; /* Light green background */
 }
