@@ -25,11 +25,12 @@
   background-image: url(assets/wallpaper.jpeg);
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
 }
 
 .img-credit, .img-credit > a{
-  color: aliceblue;
+  color: rgb(255, 255, 255);
 }
 
 .img-credit{
@@ -39,9 +40,9 @@
 
 .overlay{
   display:flex;
-  justify-content: center;
+  /* justify-content: center; */
   /* flex-direction: column; */
-  background-color: #da02c83f;
+  /* background-color: #da02c83f; */
 }
 
 
