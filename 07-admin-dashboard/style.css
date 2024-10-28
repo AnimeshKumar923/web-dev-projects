@@ -1,0 +1,15 @@
+.container {
+  display: grid;
+  /* gap: 10px; */
+}
+
+.header {
+  border: solid 5px black;
+}
+
+.content {
+  gap: 5px;
+}
+.projects {
+  border: solid 5px red;
+}
