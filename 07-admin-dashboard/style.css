@@ -7,9 +7,9 @@
   border: solid 5px black;
 }
 
-.content {
+.projects {
   gap: 5px;
 }
-.projects {
+.p1, .p2, .p3, .p4, .p5, .p6 {
   border: solid 5px red;
 }
