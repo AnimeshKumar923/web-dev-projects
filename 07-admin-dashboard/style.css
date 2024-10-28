@@ -1,15 +1,28 @@
 .container {
   display: grid;
   /* gap: 10px; */
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 1fr 3fr;
 }
 
 .header {
-  border: solid 5px black;
+  border: solid 5px rgb(129, 179, 14);
+  grid-column: 2 / 3;
 }
 
 .projects {
   gap: 5px;
+  border: solid 5px black;
 }
 .p1, .p2, .p3, .p4, .p5, .p6 {
   border: solid 5px red;
+}
+
+.user-pfp, .pfp {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  /* background-repeat: no-repeat; */
+  background-position: center center;
+  background-size: cover;
 }
