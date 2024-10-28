@@ -8,8 +8,24 @@
 .header {
   border: solid 5px rgb(129, 179, 14);
   grid-column: 2 / 3;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
 }
 
+.row1 {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  /* grid-template-rows: 0; */
+}
+
+input[type="text"] {
+  border-radius: 10px;
+}
+
+.sidebar {
+  grid-row: 1 / 3;
+  gap: 50px;
+}
 .projects {
   gap: 5px;
   border: solid 5px black;
@@ -19,8 +35,8 @@
 }
 
 .user-pfp, .pfp {
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   /* background-repeat: no-repeat; */
   background-position: center center;
