@@ -42,7 +42,9 @@ body {
   font-weight: bold;
 }
 
-.icon-group1 > .fa-bell {
+.icon-group1 > .user-pfp {
+  height: 50px;
+  width: 50px;
 
 }
 .icon-group1 > .name, .icon-group1 > .fa-bell {
