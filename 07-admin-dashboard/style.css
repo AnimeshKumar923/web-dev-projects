@@ -112,10 +112,17 @@ input[type="text"] {
   background-color: rgba(101, 2, 150, 0.829);
   color:ghostwhite;
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 140px 250px 150px;
   /* gap: 0; */
 }
 
+.subgroup1 {
+  display: grid;
+}
+
+.subgroup2 {
+  display: grid;
+}
 .sidebar > div {
   margin-left: 15px;
   justify-self: self-start;
@@ -130,9 +137,11 @@ input[type="text"] {
 .home, .profile, .messages, .history, .tasks, .communities, .settings, .support, .privacy {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /* justify-self: self-start; */
+  /* justify-self:; */
 }
 
+.sidebar-icons > div {
+}
 
 
 /* CONTENT STYLING */
