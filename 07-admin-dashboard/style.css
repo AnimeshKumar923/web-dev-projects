@@ -78,7 +78,7 @@ input[type="text"] {
   padding-left: 25px;
   padding-right: 25px;
   border-radius: 50px;
-  background-color: rgba(153, 50, 204, 0.829);
+  background-color: #be185d;
   color: aliceblue;
   font-size: large;
 }
@@ -114,11 +114,12 @@ input[type="text"] {
 .sidebar {
   grid-row: 1 / 3;
   gap: 50px;
-  background-color: rgba(101, 2, 150, 0.829);
+  background-color: #048ba3f1;
   color:ghostwhite;
   display: grid;
   grid-template-rows: 140px 250px 150px;
 }
+
 
 .subgroup1 {
   display: grid;
@@ -174,24 +175,32 @@ input[type="text"] {
   grid-template-columns: 2fr 1fr;
   /* margin-top: 50px; */
   background-color: rgba(252, 240, 131, 0.89);
+  gap: 15px;
 }
 
 .projects {
-  gap: 5px;
-  border: solid 5px black;
+  gap: 15px;
+  /* border: solid 5px black; */
   display: grid;
   grid-template-columns: 1fr 1fr;
+  margin: 20px;
 }
 
 .card {
   /* border: solid 5px red; */
-  background-color: rgb(152, 201, 184);
-  border-left: 10px solid #7dd3fc;
+  background-color: rgb(233, 240, 238);
+  border-left: 10px solid #02b302;
   border-radius: 10px;
   display: grid;
   grid-template-rows: 1fr 100px;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+  /* gap: 15px; */
 }
 
+
+.p-row1 {
+  margin-left: 15px;
+}
 
 .p-row2 {
   display: flex;
@@ -204,6 +213,7 @@ input[type="text"] {
 
 .projects > h2{
   grid-column: 1 / 3;
+  margin-bottom: 5px;
 }
 
 /* PROFILE PICTURE STYLING */
