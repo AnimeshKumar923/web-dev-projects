@@ -1,3 +1,8 @@
+body {
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+}
+
 .container {
   display: grid;
   grid-template-columns: 1fr 4fr;
@@ -117,10 +122,13 @@ input[type="text"] {
 
 .subgroup1 {
   display: grid;
+  font-size: larger;
 }
+
 
 .subgroup2 {
   display: grid;
+  font-size: larger;
   /* justify-self: center; */
 }
 
@@ -128,17 +136,24 @@ input[type="text"] {
   margin-left: 13px;
 }
 
-.subgroup2 > div > .text {
-  margin-left: 9px;
+.subgroup1 > div > .text {
+  font-weight:900;
 }
 
-.sidebar > div {
+.subgroup2 > div > .text {
   margin-left: 15px;
+  font-weight:900;
+}
+
+
+.sidebar > div {
+  /* margin-left: 15px; */
   justify-self: self-start;
 }
 
 .dashboard {
   margin: 45px;
+  margin-left: 30px;
   font-weight: bold;
   font-size:xx-large;
 }
@@ -146,7 +161,6 @@ input[type="text"] {
 .home, .profile, .messages, .history, .tasks, .communities, .settings, .support, .privacy {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /* justify-self:; */
 }
 
 .icon {
@@ -169,6 +183,8 @@ input[type="text"] {
   border: solid 5px red;
 }
 
+
+/* PROFILE PICTURE STYLING */
 .user-pfp, .pfp {
   width: 40px;
   height: 40px;
