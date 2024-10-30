@@ -197,7 +197,6 @@ input[type="text"] {
   display: grid;
   grid-template-rows: 1fr 100px;
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
-  /* gap: 15px; */
 }
 
 
@@ -233,6 +232,23 @@ input[type="text"] {
   margin: 30px;
 }
 
+.acard:nth-child(-n+2) {
+  border-bottom: 1px solid #02b302;
+
+}
+
+.acard > h4 {
+  margin-top: 0;
+}
+
+h4 {
+  margin: 0;
+}
+
+h4.site {
+  margin-top: 20px;
+}
+
 .announcements {
   margin-top: 25px ;
 }
@@ -240,6 +256,7 @@ input[type="text"] {
 .announcements > div {
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
   background-color: aliceblue;
+  border-radius: 10px;
   /* margin: 20px; */
 }
 
@@ -247,7 +264,8 @@ input[type="text"] {
   display: grid;
   background-color: rgb(201, 226, 247);
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
-  margin: 30px;
+  border-radius: 10px;
+  /* margin: 30px; */
 }
 
 .trending > div {
