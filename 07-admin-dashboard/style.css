@@ -14,7 +14,7 @@ body {
 .header {
   grid-column: 2 / 3;
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 120px 100px;
   box-shadow: rgb(151, 150, 150) 0px 7px 10px;
 }
 
@@ -23,9 +23,11 @@ body {
 .row1 {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  padding-top: 20px;
-  padding-left: 10px;
-  padding-right: 15px;
+  padding-top: 15px;
+  /* padding-left: 10px; */
+  /* padding-right: 15px; */
+  justify-content: space-around;
+  width: 100%;
 }
 
 .icon-group1 {
