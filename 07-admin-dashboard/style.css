@@ -29,7 +29,7 @@ body {
   /* padding-right: 15px; */
   justify-content: space-around;
   width: 100%;
-  background-color: #00e1ff;
+  background-color: #fabebe;
 }
 
 .icon-group1 {
@@ -181,7 +181,8 @@ input[type="text"] {
   grid-template-columns: 2fr 1fr;
   /* margin-top: 50px; */
   /* background-color: rgba(252, 240, 131, 0.89); */
-  gap: 15px;
+  gap: 10px;
+  margin: 10px;
 }
 
 .projects {
@@ -225,7 +226,7 @@ input[type="text"] {
 
 .sidecolumn {
   display: grid;
-  /* grid-template-rows: auto auto; */
+  margin-right: 15px;
 }
 
 
