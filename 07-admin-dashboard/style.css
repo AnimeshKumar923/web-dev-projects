@@ -318,4 +318,13 @@ h4.site {
 
 .tcard > .text > .username {
   margin-top: 20px;
+  font-style: italic;
+}
+
+p {
+  font-weight: 200;
+}
+
+.tcard > .text > p {
+  margin-top: 5px;
 }
