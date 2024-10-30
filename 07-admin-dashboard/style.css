@@ -1,15 +1,16 @@
 .container {
   display: grid;
-  /* gap: 10px; */
   grid-template-columns: 1fr 4fr;
   grid-template-rows: 1fr 3fr;
 }
 
+/* HEADER STYLING */
+
 .header {
-  border: solid 5px rgb(129, 179, 14);
   grid-column: 2 / 3;
   display: grid;
-  grid-template-rows: 100px 100px;
+  grid-template-rows: 1fr 1fr;
+  box-shadow: rgb(151, 150, 150) 0px 7px 10px;
 }
 
 
@@ -24,12 +25,8 @@
 
 .icon-group1 {
   display: flex;
-  gap: 15px;
+  gap: 35px;
   justify-content: center;
-  /* margin-left: 25px; */
-  /* justify-content: space-evenly; */
-  /* grid-template-columns: repeat(3, 1fr); */
-  /* gap:100px; */
 }
 
 .icon-group1 > .name {
@@ -44,31 +41,37 @@
 }
 
 input[type="text"] {
-  border-radius: 10px;
+  border-radius: 15px;
   margin-left: 5px;
+  width: 600px;
+  height: 20px;
+  background-color: rgb(203, 206, 209);
+  border: 0;
+  padding: 5px;
 }
 
+.searchbar {
+  margin-left: 50px;
+  margin-top: 5px;
+}
 
 .row2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /* align-items: center; */
 }
 
 .btn-group {
   display: flex;
-  /* align-items: center; */
   align-self: center;
   justify-self: center;
-  gap: 10px;
+  gap: 30px;
 }
 
 .btn-group > button {
-  /* size: 100px; */
   padding-top: 10px;
   padding-bottom: 10px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
   border-radius: 50px;
   background-color: rgba(153, 50, 204, 0.829);
   color: aliceblue;
@@ -101,10 +104,21 @@ input[type="text"] {
   margin: 0;
 }
 
+/* SIDEBAR STYLING */
+
 .sidebar {
   grid-row: 1 / 3;
   gap: 50px;
-  background-color: rgba(22, 165, 201, 0.788);
+  background-color: rgba(101, 2, 150, 0.829);
+  color:ghostwhite;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  /* gap: 0; */
+}
+
+.sidebar > div {
+  margin-left: 15px;
+  justify-self: self-start;
 }
 
 .dashboard {
@@ -112,9 +126,21 @@ input[type="text"] {
   font-weight: bold;
   font-size:xx-large;
 }
+
+.home, .profile, .messages, .history, .tasks, .communities, .settings, .support, .privacy {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* justify-self: self-start; */
+}
+
+
+
+/* CONTENT STYLING */
 .content {
   display: grid;
   grid-template-columns: 2fr 1fr;
+  /* margin-top: 50px; */
+  background-color: rgba(234, 236, 238, 0.582);
 }
 .projects {
   gap: 5px;
