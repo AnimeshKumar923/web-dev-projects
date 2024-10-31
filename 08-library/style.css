@@ -14,11 +14,12 @@ body {
 .display {
   display: grid;
   border: 5px solid rgb(158, 226, 32);
-  grid-template-columns: repeat(4, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   grid-template-rows: repeat(2, 1fr);
 }
 
 .card {
   border: 5px solid rgb(32, 155, 226);
-
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
