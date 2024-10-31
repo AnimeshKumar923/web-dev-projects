@@ -1,0 +1,24 @@
+body {
+  margin: 0;
+}
+
+.container {
+  height: 50vh;
+  width: 50vw;
+  display: grid;
+  border: 5px solid saddlebrown;
+  grid-template-rows: 1fr 1fr;
+  /* grtr */
+}
+
+.display {
+  display: grid;
+  border: 5px solid rgb(158, 226, 32);
+  grid-template-columns: repeat(4, minmax(100px, 1fr));
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.card {
+  border: 5px solid rgb(32, 155, 226);
+
+}
