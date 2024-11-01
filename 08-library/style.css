@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .container {
@@ -22,4 +23,11 @@ body {
   border: 5px solid rgb(32, 155, 226);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  justify-items: center;
+}
+
+.meta {
+  display: flex;
+  justify-content: center;
 }
