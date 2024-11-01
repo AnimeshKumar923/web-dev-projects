@@ -1,7 +1,8 @@
+// library object
+
 const myLibrary = [];
 
 function Book(title, author, pages, year) {
-  // the constructor...
   this.title = title;
   this.author = author;
   this.pages = pages;
@@ -10,7 +11,9 @@ function Book(title, author, pages, year) {
 
 function addBook() {
   let book = new Book('Philo', 'Kafka', 278, 2000);
+  let b1 = new Book('Item', 'Rumi', 4278, 3000);
   myLibrary.push(book);
+  myLibrary.push(b1);
 }
 
 const displayBtn = document.querySelector('.display-btn');
@@ -19,22 +22,17 @@ displayBtn.addEventListener('click', displayBook)
 
 function displayBook(){
   myLibrary.forEach(item => {
-    createCard(item);
-    // console.log(typeof item);
+    createDisplayCard(item);
   });
 }
 
+const newBook = document.querySelector('.add-book');
 
-// for(let i = 0; i < 12; i++){
-// }
-
-// test function for display
-// createCard();
 console.log(myLibrary);
 addBook();
 console.log(myLibrary);
 
-function createCard(item){
+function createDisplayCard(item){
   // create card
   const display = document.querySelector('.display');
   const cardDiv = document.createElement('div');
