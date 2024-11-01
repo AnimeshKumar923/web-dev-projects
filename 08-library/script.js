@@ -18,11 +18,11 @@ const displayBtn = document.querySelector('.display-btn');
 displayBtn.addEventListener('click', displayBook)
 
 function displayBook(){
-  createCard()
+  myLibrary.forEach(item => {
+    createCard(item);
+    // console.log(typeof item);
+  });
 }
-myLibrary.forEach(item => {
-  
-});
 
 
 // for(let i = 0; i < 12; i++){
@@ -34,7 +34,7 @@ console.log(myLibrary);
 addBook();
 console.log(myLibrary);
 
-function createCard(){
+function createCard(item){
   // create card
   const display = document.querySelector('.display');
   const cardDiv = document.createElement('div');
@@ -44,27 +44,27 @@ function createCard(){
   // create title
   const titleDiv = document.createElement('div');
   titleDiv.classList.add('title');
-  titleDiv.textContent = `Dynamic title`;
+  titleDiv.textContent = `${item.title}`;
   cardDiv.appendChild(titleDiv);
   
   // create info
   const infoDiv = document.createElement('div');
   infoDiv.classList.add('info');
-  infoDiv.textContent = `info`
+  infoDiv.textContent = `Information`
   cardDiv.appendChild(infoDiv);
   
   const authorDiv = document.createElement('div');
   authorDiv.classList.add('meta');
-  authorDiv.textContent = `a`;
+  authorDiv.textContent = `${item.author}`;
   infoDiv.appendChild(authorDiv);
   
   const pagesDiv = document.createElement('div');
   pagesDiv.classList.add('meta');
-  pagesDiv.textContent = `b`;
+  pagesDiv.textContent = `${item.pages}`;
   infoDiv.appendChild(pagesDiv);
   
   const yearDiv = document.createElement('div');
   yearDiv.classList.add('meta');
-  yearDiv.textContent = `c`
+  yearDiv.textContent = `${item.year}`
   infoDiv.appendChild(yearDiv);
 }
