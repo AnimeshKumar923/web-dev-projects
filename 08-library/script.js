@@ -47,9 +47,10 @@ newBookBtn.addEventListener('click', () => {
 })
 
 const closeModalBtn = document.querySelector('.close-modal');
-closeModalBtn.addEventListener('click', () => {
+closeModalBtn.addEventListener('click', (e) => {
   dialog.close();
   document.querySelector('.submit-form').reset();
+  e.preventDefault(); // to prevent sending data unintentionally, comment out and check console for the problem occurring.
 })
 
 // add book button handler
@@ -73,6 +74,13 @@ addBookBtn.addEventListener('click', (e) => {
     dialog.close();
   }
 })
+
+// remove book button handler
+// const removeBookBtn = document.querySelector('.remove-btn');
+// removeBookBtn.addEventListener('click', (e) => {
+//   let index = this.getAttribute('index');
+//   myLibrary.splice(index, 1);
+// })
 
 /**
  * Creates a display card with elements for each of the book present in the 'myLibrary' Object array
@@ -115,11 +123,19 @@ function createDisplayCard(item){
 
   // remove book button
   const removeBookBtn = document.createElement('button');
-  removeBookBtn.classList.add(`remove-btn`, `obj${myLibrary.length}`);
+  removeBookBtn.classList.add('remove-btn');
   removeBookBtn.textContent = 'Remove Book';
+  removeBookBtn.setAttribute('index', myLibrary.length);
   cardDiv.appendChild(removeBookBtn);
 
+  // display flag
   item.isDisplayed = true;
+
+  removeBookBtn.addEventListener('click', () => {
+    let index = removeBookBtn.getAttribute('index');
+    myLibrary.splice(index-1, 1);
+    alert('book removed!');
+  })
 }
 
 // console.log(myLibrary);
