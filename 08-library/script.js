@@ -135,7 +135,13 @@ function createDisplayCard(item){
     let index = removeBookBtn.getAttribute('index');
     myLibrary.splice(index-1, 1);
     alert('book removed!');
+    clearDisplay();
   })
+}
+
+function clearDisplay(){
+  const card = document.querySelector('.card');
+  card.remove();
 }
 
 // console.log(myLibrary);
