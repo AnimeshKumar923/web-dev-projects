@@ -2,7 +2,7 @@
 
 
 const myLibrary = [];
-
+// console.log(myLibrary.length)
 /**
  * Constructor method to initialize each book object created in the code 
  * @param {string} title Book's title
@@ -15,6 +15,7 @@ function Book(title, author, pages, year) {
   this.author = author;
   this.pages = pages;
   this.year = year;
+  this.isDisplayed = this.isDisplayed;
 }
 
 /*
@@ -31,7 +32,9 @@ const displayBtn = document.querySelector('.display-btn');
 displayBtn.addEventListener('click', displayBook)
 function displayBook(){
   myLibrary.forEach(item => {
-    createDisplayCard(item);
+    if(!item.isDisplayed){
+      createDisplayCard(item);
+    }
   });
 }
 
@@ -112,9 +115,11 @@ function createDisplayCard(item){
 
   // remove book button
   const removeBookBtn = document.createElement('button');
-  removeBookBtn.classList.add('.remove-btn');
+  removeBookBtn.classList.add(`remove-btn`, `obj${myLibrary.length}`);
   removeBookBtn.textContent = 'Remove Book';
   cardDiv.appendChild(removeBookBtn);
+
+  item.isDisplayed = true;
 }
 
 // console.log(myLibrary);
