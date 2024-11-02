@@ -12,24 +12,25 @@
     <div class="header">
       <h1>LIBRARY</h1>
       <button class="display-btn"> Display Books</button>
-      <button class="add-book">Add new book</button>
+      <!-- <button class="add-book">Add new book</button> -->
       <form action="#" class="submit-form">
         <p>
           <label for="title">Title:</label>
-          <input type="text" name="book_title" id="title">
+          <input type="text" name="book_title" id="title" required>
         </p>
         <p>
           <label for="author">Author name:</label>
-          <input type="text" name="book_author" id="author">
+          <input type="text" name="book_author" id="author" required>
         </p>
         <p>
           <label for="pages">Total Pages:</label>
-          <input type="number" name="book_total_pages" id="pages">
+          <input type="number" name="book_total_pages" id="pages" required>
         </p>
         <p>
           <label for="year">Pulished Year:</label>
-          <input type="number" name="book_published_year" id="year">
+          <input type="number" name="book_published_year" id="year" required>
         </p>
+        <button type="button" class="add-book">Add Book</button>
       </form>
       <dialog></dialog>
     </div>

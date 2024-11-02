@@ -11,22 +11,34 @@ function Book(title, author, pages, year) {
 
 function addBook() {
   let book = new Book('Philo', 'Kafka', 278, 2000);
-  let b1 = new Book('Item', 'Rumi', 4278, 3000);
+  let b1 = new Book('SAINT RUMI', 'Rumi', 874, 300);
   myLibrary.push(book);
   myLibrary.push(b1);
 }
 
+
+// diplay button
 const displayBtn = document.querySelector('.display-btn');
-
 displayBtn.addEventListener('click', displayBook)
-
 function displayBook(){
   myLibrary.forEach(item => {
     createDisplayCard(item);
   });
 }
 
-const newBook = document.querySelector('.add-book');
+// extract form values
+
+let bookTitle = document.querySelector('#title').value;
+let bookAuthor = document.querySelector('#author').value;
+let bookPages = document.querySelector('#pages').value;
+let bookYear = document.querySelector('#year').value;
+
+// console.log(`book title = ${bookTitle}`);
+const addBookBtn = document.querySelector('.add-book');
+
+addBookBtn.addEventListener('click', function(){
+  
+})
 
 console.log(myLibrary);
 addBook();
