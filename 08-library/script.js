@@ -1,7 +1,15 @@
 // library object
 
+
 const myLibrary = [];
 
+/**
+ * Constructor method to initialize each book object created in the code 
+ * @param {string} title Book's title
+ * @param {string} author Author's name
+ * @param {number} pages Total number of pages in book
+ * @param {number} year Publication year
+ */
 function Book(title, author, pages, year) {
   this.title = title;
   this.author = author;
@@ -63,6 +71,10 @@ addBookBtn.addEventListener('click', (e) => {
   }
 })
 
+/**
+ * Creates a display card with elements for each of the book present in the 'myLibrary' Object array
+ * @param {object} item
+ */
 
 function createDisplayCard(item){
   // create card
@@ -97,6 +109,12 @@ function createDisplayCard(item){
   yearDiv.classList.add('meta');
   yearDiv.textContent = `${item.year}`
   infoDiv.appendChild(yearDiv);
+
+  // remove book button
+  const removeBookBtn = document.createElement('button');
+  removeBookBtn.classList.add('.remove-btn');
+  removeBookBtn.textContent = 'Remove Book';
+  cardDiv.appendChild(removeBookBtn);
 }
 
 // console.log(myLibrary);
