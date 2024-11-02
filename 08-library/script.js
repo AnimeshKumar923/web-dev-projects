@@ -18,7 +18,7 @@ function addBook() {
 }
 */
 
-// diplay button
+// display button handler
 const displayBtn = document.querySelector('.display-btn');
 displayBtn.addEventListener('click', displayBook)
 function displayBook(){
@@ -28,11 +28,18 @@ function displayBook(){
 }
 
 
+// modal button & form handler
+const newBookBtn = document.querySelector('.new-book');
+const dialog = document.querySelector('.dialog');
+newBookBtn.addEventListener('click', (e) => {
+  dialog.showModal();
+})
 
-// console.log(`book title = ${bookTitle}`);
+
+// add book button handler
 const addBookBtn = document.querySelector('.add-book');
 
-addBookBtn.addEventListener('click', function(e){
+addBookBtn.addEventListener('click', (e) => {
   e.preventDefault();
   
   // extract form values
@@ -47,13 +54,10 @@ addBookBtn.addEventListener('click', function(e){
     let book = new Book(bookTitle, bookAuthor, bookPages, bookYear);
     myLibrary.push(book);
     alert('book added!')
+    document.querySelector('.submit-form').reset();
   }
-  document.querySelector('.submit-form').reset();
 })
 
-// console.log(myLibrary);
-// addBook();
-// console.log(myLibrary);
 
 function createDisplayCard(item){
   // create card
