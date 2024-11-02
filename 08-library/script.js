@@ -31,14 +31,18 @@ function displayBook(){
 // modal button & form handler
 const newBookBtn = document.querySelector('.new-book');
 const dialog = document.querySelector('.dialog');
-newBookBtn.addEventListener('click', (e) => {
+newBookBtn.addEventListener('click', () => {
   dialog.showModal();
 })
 
+const closeModalBtn = document.querySelector('.close-modal');
+closeModalBtn.addEventListener('click', () => {
+  dialog.close();
+  document.querySelector('.submit-form').reset();
+})
 
 // add book button handler
 const addBookBtn = document.querySelector('.add-book');
-
 addBookBtn.addEventListener('click', (e) => {
   e.preventDefault();
   
@@ -95,4 +99,4 @@ function createDisplayCard(item){
   infoDiv.appendChild(yearDiv);
 }
 
-console.log(myLibrary);
+// console.log(myLibrary);
