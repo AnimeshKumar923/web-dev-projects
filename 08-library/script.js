@@ -53,8 +53,9 @@ addBookBtn.addEventListener('click', (e) => {
   } else {
     let book = new Book(bookTitle, bookAuthor, bookPages, bookYear);
     myLibrary.push(book);
-    alert('book added!')
+    alert('book added! Use the display button to view all books')
     document.querySelector('.submit-form').reset();
+    dialog.close();
   }
 })
 
