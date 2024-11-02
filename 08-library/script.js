@@ -9,13 +9,14 @@ function Book(title, author, pages, year) {
   this.year = year;
 }
 
+/*
 function addBook() {
   let book = new Book('Philo', 'Kafka', 278, 2000);
-  // let b1 = new Book('SAINT RUMI', 'Rumi', 874, 300);
+  let b1 = new Book('SAINT RUMI', 'Rumi', 874, 300);
   myLibrary.push(book);
-  // myLibrary.push(b1);
+  myLibrary.push(b1);
 }
-
+*/
 
 // diplay button
 const displayBtn = document.querySelector('.display-btn');
@@ -33,6 +34,7 @@ const addBookBtn = document.querySelector('.add-book');
 
 addBookBtn.addEventListener('click', function(e){
   e.preventDefault();
+  
   // extract form values
   let bookTitle = document.querySelector('#title').value;
   let bookAuthor = document.querySelector('#author').value;
@@ -40,11 +42,13 @@ addBookBtn.addEventListener('click', function(e){
   let bookYear = document.querySelector('#year').value;
 
   if (bookTitle === '' || bookPages === '' || bookAuthor === '' || bookYear === '') {
-    return alert('one of the field is empty, verify the fields again')
+    alert('one of the field is empty, verify the fields again')
   } else {
-      let book = new Book(bookTitle, bookAuthor, bookPages, bookYear);
-      myLibrary.push(book);
+    let book = new Book(bookTitle, bookAuthor, bookPages, bookYear);
+    myLibrary.push(book);
+    alert('book added!')
   }
+  document.querySelector('.submit-form').reset();
 })
 
 // console.log(myLibrary);
