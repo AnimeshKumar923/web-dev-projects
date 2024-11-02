@@ -9,7 +9,6 @@ body {
   display: grid;
   border: 5px solid saddlebrown;
   grid-template-rows: 1fr 1fr;
-  /* grtr */
 }
 
 .header {
@@ -32,12 +31,14 @@ body {
   justify-items: center;
 }
 
+.info {
+  grid-row: 1 / 3;
+}
+
 .meta {
   display: flex;
   justify-content: center;
 }
-
-
 /* FORM STYLING */
 form {
   display: inline-block;
