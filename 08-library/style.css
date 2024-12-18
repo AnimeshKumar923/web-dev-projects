@@ -4,8 +4,8 @@ body {
 }
 
 .container {
-  height: 50vh;
-  width: 50vw;
+  height: 80vh;
+  width: 80vw;
   display: grid;
   border: 5px solid saddlebrown;
   grid-template-rows: 1fr 1fr;

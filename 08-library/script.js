@@ -10,14 +10,18 @@ const myLibrary = [];
  * @param {number} pages Total number of pages in book
  * @param {number} year Publication year
  */
-function Book(title, author, pages, year) {
+function Book(title, author, pages, year, isRead) {
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.year = year;
   this.isDisplayed = false;
+  this.isRead = isRead;
 }
 
+Book.prototype.toggleReadStatus = function(){
+  this.isRead = !this.isRead;
+};
 
 function addBook() {
   let book = new Book('ONE', 'Kafka', 278, 2000, false);
@@ -82,7 +86,6 @@ addBookBtn.addEventListener('click', (e) => {
   displayBook();
 })
 
-
 /**
  * Creates a display card with elements for each of the book present in the 'myLibrary' Object array
  * @param {object} item
@@ -122,6 +125,28 @@ function createDisplayCard(item, index){
   yearDiv.textContent = `${item.year}`
   infoDiv.appendChild(yearDiv);
 
+  const toggleDiv = document.createElement('div');
+  const toggleRead = document.createElement('input');
+  toggleDiv.classList.add('toggle');
+
+  toggleRead.type = 'checkbox';
+  toggleRead.checked = item.isRead;
+  toggleRead.id = `read-checkbox-${index}`;
+  toggleRead.textContent = 'Read: ';
+  toggleDiv.appendChild(toggleRead);
+  // toggleDiv.appendChild(label);
+  cardDiv.appendChild(toggleDiv);
+
+  toggleRead.addEventListener('change', () => {
+    item.toggleReadStatus();
+    alert(`Read status changed! Current status: ${item.isRead ? 'Read' : 'Not Read'}`);
+  })
+  // const label = document.createElement('label');
+  // label.htmlFor = 'id';
+  // label.appendChild(document.createTextNode('Read?'));
+
+
+
   // display flag
   item.isDisplayed = true;
 
@@ -135,8 +160,12 @@ function createDisplayCard(item, index){
   removeBookBtn.addEventListener('click', () => {
     let index = removeBookBtn.getAttribute('book-index');
     myLibrary.splice(index, 1);
-    alert('book removed!');
-    clearDisplay();
+    alert(`Book removed! Use 'Display Books' button to see the updated list`);
+    myLibrary.forEach((item) => {
+      item.isDisplayed = false;
+    })
+    // clearDisplay();
+    // createDisplayCard();
   });
 }
 
