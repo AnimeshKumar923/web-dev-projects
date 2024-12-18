@@ -36,9 +36,10 @@ addBook();
 const displayBtn = document.querySelector('.display-btn');
 displayBtn.addEventListener('click', displayBook)
 function displayBook(){
-  myLibrary.forEach(item => {
+  clearDisplay();
+  myLibrary.forEach((item, index) => {
     if(!item.isDisplayed){
-      createDisplayCard(item);
+      createDisplayCard(item, index);
     }
   });
 }
@@ -87,7 +88,7 @@ addBookBtn.addEventListener('click', (e) => {
  * @param {object} item
  */
 
-function createDisplayCard(item){
+function createDisplayCard(item, index){
   // create card
   const display = document.querySelector('.display');
   const cardDiv = document.createElement('div');
@@ -130,19 +131,16 @@ function createDisplayCard(item){
   removeBookBtn.textContent = 'Remove Book';
   cardDiv.appendChild(removeBookBtn);
 
+  removeBookBtn.setAttribute('book-index', index);
+  removeBookBtn.addEventListener('click', () => {
+    let index = removeBookBtn.getAttribute('book-index');
+    myLibrary.splice(index, 1);
+    alert('book removed!');
+    clearDisplay();
+  });
 }
 
 function clearDisplay(){
-  const card = document.querySelector('.card');
-  card.remove();
+  const display = document.querySelector('.display');
+  display.innerHTML = '';
 }
-
-
-const removeBookBtn = document.querySelector('.remove-btn');
-removeBookBtn.setAttribute('book-index', "index");
-removeBookBtn.addEventListener('click', () => {
-  let index = removeBookBtn.getAttribute('book-index');
-  myLibrary.splice(index, 1);
-  alert('book removed!');
-  clearDisplay();
-});
