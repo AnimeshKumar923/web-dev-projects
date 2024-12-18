@@ -15,17 +15,22 @@ function Book(title, author, pages, year) {
   this.author = author;
   this.pages = pages;
   this.year = year;
-  this.isDisplayed = this.isDisplayed;
+  this.isDisplayed = false;
 }
 
-/*
+
 function addBook() {
-  let book = new Book('Philo', 'Kafka', 278, 2000);
-  let b1 = new Book('SAINT RUMI', 'Rumi', 874, 300);
+  let book = new Book('ONE', 'Kafka', 278, 2000, false);
+  let b1 = new Book('TWO', 'Rumi', 874, 300, false);
+  let b2 = new Book('THREE', 'Marcus', 547, 2001, false);
+  let b3 = new Book('FOUR', 'Confucius', 879, 2020, false);
   myLibrary.push(book);
   myLibrary.push(b1);
+  myLibrary.push(b2);
+  myLibrary.push(b3);
 }
-*/
+addBook();
+
 
 // display button handler
 const displayBtn = document.querySelector('.display-btn');
@@ -65,22 +70,17 @@ addBookBtn.addEventListener('click', (e) => {
   let bookYear = document.querySelector('#year').value;
 
   if (bookTitle === '' || bookPages === '' || bookAuthor === '' || bookYear === '') {
-    alert('one of the field is empty, verify the fields again')
+    alert('one of the field is empty, verify the fields again');
   } else {
     let book = new Book(bookTitle, bookAuthor, bookPages, bookYear);
     myLibrary.push(book);
-    alert('book added! Use the display button to view all books')
+    alert('book added!');
     document.querySelector('.submit-form').reset();
     dialog.close();
   }
+  displayBook();
 })
 
-// remove book button handler
-// const removeBookBtn = document.querySelector('.remove-btn');
-// removeBookBtn.addEventListener('click', (e) => {
-//   let index = this.getAttribute('index');
-//   myLibrary.splice(index, 1);
-// })
 
 /**
  * Creates a display card with elements for each of the book present in the 'myLibrary' Object array
@@ -121,22 +121,15 @@ function createDisplayCard(item){
   yearDiv.textContent = `${item.year}`
   infoDiv.appendChild(yearDiv);
 
+  // display flag
+  item.isDisplayed = true;
+
   // remove book button
   const removeBookBtn = document.createElement('button');
   removeBookBtn.classList.add('remove-btn');
   removeBookBtn.textContent = 'Remove Book';
-  removeBookBtn.setAttribute('index', myLibrary.length);
   cardDiv.appendChild(removeBookBtn);
 
-  // display flag
-  item.isDisplayed = true;
-
-  removeBookBtn.addEventListener('click', () => {
-    let index = removeBookBtn.getAttribute('index');
-    myLibrary.splice(index-1, 1);
-    alert('book removed!');
-    clearDisplay();
-  })
 }
 
 function clearDisplay(){
@@ -144,4 +137,12 @@ function clearDisplay(){
   card.remove();
 }
 
-// console.log(myLibrary);
+
+const removeBookBtn = document.querySelector('.remove-btn');
+removeBookBtn.setAttribute('book-index', "index");
+removeBookBtn.addEventListener('click', () => {
+  let index = removeBookBtn.getAttribute('book-index');
+  myLibrary.splice(index, 1);
+  alert('book removed!');
+  clearDisplay();
+});
