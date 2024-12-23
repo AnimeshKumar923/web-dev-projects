@@ -5,27 +5,40 @@ const gameBoard = (function(){
     grid.push({move: '', isOccupied: false});
   }
   // playerMove()
-  return grid;
+  return {
+    updateGrid: function(index, grid){
+      if(!grid[index].isOccupied){
+        grid[index].move = move;
+        grid[index].isOccupied = true;
+      }
+    },
+    getGrid: function(){
+      return grid;
+    }
+  }
 })();
 
 function playerTurn(playerOne, playerTwo){
-  gameBoard.grid.forEach(item => {
+  gameBoard.getGrid().forEach(item => {
     console.log(item);
   })
   let gridPosition = Number(prompt('take your move from 1-9'));
-  while(playerOne.isOccupied === true || playerTwo.isOccupied === true){
+  while(gameBoard.getGrid()[gridPosition].isOccupied === true){
     prompt('enter different position');
   }
-  if(playerOne.role === 'x' && playerOne.isOccupied === false){
-    grid[gridPosition].move = 'x';
-    grid[gridPosition].isOccupied = true;
-  } else {
-    if(playerTwo.isOccupied === false){
-      grid[gridPosition].move = 'o';
-      grid[gridPosition].isOccupied = true;
-    } 
+  if(playerOne.role === 'x') // && gameBoard.getGrid()[gridPosition].isOccupied === false; removed due to assumptions that we checked for existing values by help of while loop; re-introduce if error occurs
+  {
+    getGrid()[gridPosition].move = 'x';
+    getGrid()[gridPosition].isOccupied = true;
   }
 }
+
+// else {
+//   if(playerTwo.isOccupied === false){
+//     getGrid()[gridPosition].move = 'o';
+//     getGrid()[gridPosition].isOccupied = true;
+//   } 
+// }
 
 function createPlayer(name, role){
   const username = name;
@@ -78,6 +91,10 @@ function startGame(){
   }
   const playerTwo = createPlayer(name2, role2);
   playerTurn(playerOne, playerTwo);
+  // console.log(playerOne);
 }
 
-startGame();
+// startGame();
+console.log(gameBoard.getGrid());
+// gameBoard.getGrid()[2].isOccupied = true;
+// console.log(gameBoard.getGrid()[2].isOccupied);
