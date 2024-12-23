@@ -6,7 +6,7 @@ const gameBoard = (function(){
   }
   // playerMove()
   return {
-    updateGrid: function(index, grid){
+    updateGrid: function(index, grid, move){
       if(!grid[index].isOccupied){
         grid[index].move = move;
         grid[index].isOccupied = true;
@@ -18,31 +18,36 @@ const gameBoard = (function(){
   }
 })();
 
+// 'one more round' function; 
+// ask each time if user wants to start the new round or continue existing round; make logic accordingly
+
 function playerTurn(playerOne, playerTwo){
-  gameBoard.getGrid().forEach(item => {
-    console.log(item);
-  })
+  // gameBoard.getGrid().forEach(item => {
+  //   console.log(item);
+  // })
   let gridPosition = Number(prompt('take your move from 1-9'));
   while(gameBoard.getGrid()[gridPosition].isOccupied === true){
     prompt('enter different position');
+    gridPosition = Number(prompt('take your move from 1-9'));
   }
-  if(playerOne.role === 'x') // && gameBoard.getGrid()[gridPosition].isOccupied === false; removed due to assumptions that we checked for existing values by help of while loop; re-introduce if error occurs
-  {
-    getGrid()[gridPosition].move = 'x';
-    getGrid()[gridPosition].isOccupied = true;
+
+  let currentPlayer = playerOne;
+  
+  gameBoard.updateGrid(gridPosition, gameBoard.getGrid(), currentPlayer.userRole);
+  currentPlayer = currentPlayer === playerOne ? playerTwo : playerOne;
+  gridIsFilled(gameBoard.getGrid()); // check if grid filled;
+}
+
+function gridIsFilled(grid){
+  for (let i = 0; i < grid.length; i++) {
+    if(!grid[i].isOccupied){
+      return false;
+    } 
   }
 }
 
-// else {
-//   if(playerTwo.isOccupied === false){
-//     getGrid()[gridPosition].move = 'o';
-//     getGrid()[gridPosition].isOccupied = true;
-//   } 
-// }
-
 function createPlayer(name, role){
   const username = name;
-  // this.playerId = playerId; // define it later on in future
   const userRole = role // choose role X or O
   return {username, userRole};
 }
