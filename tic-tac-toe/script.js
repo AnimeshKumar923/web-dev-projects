@@ -1,10 +1,8 @@
 const gameBoard = (function(){
-  // let grid = [null, null, null, null, null, null, null, null, null];
   const grid = [];
   for (let i = 0; i < 9; i++) {
     grid.push({move: '', isOccupied: false});
   }
-  // playerMove()
   return {
     updateGrid: function(index, grid, move){
       if(!grid[index].isOccupied){
@@ -25,19 +23,15 @@ function playerTurn(playerOne, playerTwo, currentPlayer){
   if(!currentPlayer){
     currentPlayer = playerOne;
   }
-  // gameBoard.getGrid().forEach(item => {
-  //   console.log(item);
-  // })
-  let gridPosition = Number(prompt(`take your move from 1-9 ${currentPlayer.username}`)) - 1;
+  let gridPosition = Number(prompt(`take your move from 1-9 (${currentPlayer.username})`)) - 1;
   while(gameBoard.getGrid()[gridPosition].isOccupied === true){
-    prompt('enter different position');
-    gridPosition = Number(prompt(`take your move from 1-9 ${currentPlayer.username}`));
+    alert('enter different position');
+    gridPosition = Number(prompt(`take your move from 1-9 (${currentPlayer.username})`));
   }
 
-  
   gameBoard.updateGrid(gridPosition, gameBoard.getGrid(), currentPlayer.userRole);
   let checkWin = winConditionCheck(gameBoard.getGrid());
-  if(checkWin){
+  if(checkWin.didWin){
     return checkWin.winUser;
   }
   currentPlayer = currentPlayer === playerOne ? playerTwo : playerOne;
@@ -51,13 +45,12 @@ function gridsFilled(grid){
     if(grid[i].isOccupied === false){
       return false;
     }
-    // return grid[i].isOccupied;  // try returning the above expression directly if this current one works
   }
 }
 
 function createPlayer(name, role){
   const username = name;
-  const userRole = role // choose role X or O
+  const userRole = role
   return {username, userRole};
 }
 
@@ -66,28 +59,28 @@ function winConditionCheck(grid){
   let oVar = 'o';
   const cases = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
 
-  cases.forEach(item => {
-    if(
+  for (let item of cases) {
+    if (
       grid[item[0]].move === xVar &&
       grid[item[1]].move === xVar &&
       grid[item[2]].move === xVar
-    ){
-      return {didWin: true, winUser: xVar};
+    ) {
+      return { didWin: true, winUser: xVar };
     }
-
-    else if(
+  
+    if (
       grid[item[0]].move === oVar &&
       grid[item[1]].move === oVar &&
       grid[item[2]].move === oVar
-    ){
-      return {didWin: true, winUser: oVar};
+    ) {
+      return { didWin: true, winUser: oVar };
     }
+  }
 
-    else {
-      return {didWin: true, winUser: 'draw'};
-    }
-  });
-
+  if (grid.every(cell => cell.isOccupied)) {
+    return { didWin: true, winUser: 'draw' };
+  }
+    
   return false;
 }
 // winConditionCheck();
@@ -95,19 +88,19 @@ function winConditionCheck(grid){
 // const playerTwo = new Player('TWO', 'o');
 
 function startGame(){
-  let name = prompt('enter name');
+  let name = prompt('enter name p1');
   let role = prompt('choose role (x/o)');
   const playerOne = createPlayer(name, role);
 
-  let name2 = prompt('enter name');
+  let name2 = prompt('enter name p2');
   if(role === 'x'){
     role2 = 'o';
   }else{
     role2 = 'x';
   }
   const playerTwo = createPlayer(name2, role2);
-  playerTurn(playerOne, playerTwo);
-  // console.log(playerOne);
+  const winner = playerTurn(playerOne, playerTwo);
+  alert(`${winner.toUpperCase()} WINS!`);
 }
 
 startGame();
