@@ -21,28 +21,37 @@ const gameBoard = (function(){
 // 'one more round' function; 
 // ask each time if user wants to start the new round or continue existing round; make logic accordingly
 
-function playerTurn(playerOne, playerTwo){
+function playerTurn(playerOne, playerTwo, currentPlayer){
+  if(!currentPlayer){
+    currentPlayer = playerOne;
+  }
   // gameBoard.getGrid().forEach(item => {
   //   console.log(item);
   // })
-  let gridPosition = Number(prompt('take your move from 1-9'));
+  let gridPosition = Number(prompt(`take your move from 1-9 ${currentPlayer.username}`)) - 1;
   while(gameBoard.getGrid()[gridPosition].isOccupied === true){
     prompt('enter different position');
-    gridPosition = Number(prompt('take your move from 1-9'));
+    gridPosition = Number(prompt(`take your move from 1-9 ${currentPlayer.username}`));
   }
 
-  let currentPlayer = playerOne;
   
   gameBoard.updateGrid(gridPosition, gameBoard.getGrid(), currentPlayer.userRole);
+  let checkWin = winConditionCheck(gameBoard.getGrid());
+  if(checkWin){
+    return checkWin.winUser;
+  }
   currentPlayer = currentPlayer === playerOne ? playerTwo : playerOne;
-  gridIsFilled(gameBoard.getGrid()); // check if grid filled;
+  if(gridsFilled(gameBoard.getGrid()) === false){  // check if grid filled;
+    return playerTurn(playerOne, playerTwo, currentPlayer);
+  }
 }
 
-function gridIsFilled(grid){
+function gridsFilled(grid){
   for (let i = 0; i < grid.length; i++) {
-    if(!grid[i].isOccupied){
+    if(grid[i].isOccupied === false){
       return false;
-    } 
+    }
+    // return grid[i].isOccupied;  // try returning the above expression directly if this current one works
   }
 }
 
@@ -63,7 +72,7 @@ function winConditionCheck(grid){
       grid[item[1]].move === xVar &&
       grid[item[2]].move === xVar
     ){
-      return xVar;
+      return {didWin: true, winUser: xVar};
     }
 
     else if(
@@ -71,13 +80,15 @@ function winConditionCheck(grid){
       grid[item[1]].move === oVar &&
       grid[item[2]].move === oVar
     ){
-      return oVar;
+      return {didWin: true, winUser: oVar};
     }
 
     else {
-      return 'draw';
+      return {didWin: true, winUser: 'draw'};
     }
   });
+
+  return false;
 }
 // winConditionCheck();
 // const playerOne = new Player('ONE', 'x');
@@ -99,7 +110,7 @@ function startGame(){
   // console.log(playerOne);
 }
 
-// startGame();
+startGame();
 console.log(gameBoard.getGrid());
 // gameBoard.getGrid()[2].isOccupied = true;
 // console.log(gameBoard.getGrid()[2].isOccupied);
