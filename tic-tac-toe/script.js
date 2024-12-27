@@ -1,3 +1,5 @@
+//----------- GAME LOGIC ------------
+
 const gameBoard = (function(){
   const grid = [];
   for (let i = 0; i < 9; i++) {
@@ -103,7 +105,26 @@ function startGame(){
   alert(`${winner.toUpperCase()} WINS!`);
 }
 
-startGame();
+// startGame();
 console.log(gameBoard.getGrid());
 // gameBoard.getGrid()[2].isOccupied = true;
 // console.log(gameBoard.getGrid()[2].isOccupied);
+
+
+
+//----------- DOM LOGIC ------------
+
+const gameBoardDiv = document.querySelector('.gameBoard');
+for(let i = 0; i < 9; i++){
+  const cell = document.createElement('div');
+  // cell.innerHTML = `${i + 1}`;
+  cell.className = `cell`;
+  gameBoardDiv.appendChild(cell);
+}
+
+const xMark = document.createElement('i');
+xMark.classList.add('fa-solid', 'fa-x');
+
+const cellDiv = document.querySelector('.cell');
+// cellDiv.appendChild(xMark)
+// gameBoardDiv.appendChild(btnDiv);
