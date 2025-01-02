@@ -27,7 +27,7 @@ function playerTurn(playerOne, playerTwo, currentPlayer){
   }
   let gridPosition = Number(prompt(`take your move from 1-9 (${currentPlayer.username})`)) - 1;
   while(gameBoard.getGrid()[gridPosition].isOccupied === true){
-    alert('enter different position');
+    alert('enter different position' );
     gridPosition = Number(prompt(`take your move from 1-9 (${currentPlayer.username})`));
   }
 
@@ -134,9 +134,16 @@ const cellDivs = document.querySelectorAll('.cell');
 cellDivs.forEach((item) => {
   item.addEventListener('click', () => {
     console.log(typeof item);
-
+    
   })
 })
+
+const xBtn = document.querySelector('.xBtn');
+
+xBtn.addEventListener('click', () => {
+  
+  alert(`you've selected X, computer will play O`);
+})
 // console.log()
-// cellDiv.appendChild(xMark);
+// cellDivs.appendChild(xMark);
 // gameBoardDiv.appendChild(btnDiv);
