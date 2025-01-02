@@ -119,12 +119,24 @@ for(let i = 0; i < 9; i++){
   const cell = document.createElement('div');
   // cell.innerHTML = `${i + 1}`;
   cell.className = `cell`;
+  cell.setAttribute('cell', `${i}`);
+  cell.style.border = `1px solid rgb(176, 202, 30)`;
   gameBoardDiv.appendChild(cell);
 }
 
-const xMark = document.createElement('i');
-xMark.classList.add('fa-solid', 'fa-x');
 
-const cellDiv = document.querySelector('.cell');
-// cellDiv.appendChild(xMark)
+
+const xMark = document.createElement('i');
+xMark.classList.add('fa-solid', 'fa-x', 'fa-2xl');
+
+const cellDivs = document.querySelectorAll('.cell');
+
+cellDivs.forEach((item) => {
+  item.addEventListener('click', () => {
+    console.log(typeof item);
+
+  })
+})
+// console.log()
+// cellDiv.appendChild(xMark);
 // gameBoardDiv.appendChild(btnDiv);

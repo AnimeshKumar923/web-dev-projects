@@ -15,10 +15,13 @@ body {
 
 .header {
   border: 5px solid saddlebrown;
+  display: grid;
 }
 
+/* add glowing effect on hover over the specified cell */
+
 .gameBoard {
-  border: 5px solid saddlebrown;
+  border: 5px solid salmon;
   display: grid;
   grid-template-rows: repeat(3, 1fr);
   grid-template-columns: repeat(3, 1fr);
@@ -31,5 +34,5 @@ body {
 }
 
 .footer {
-  border: 5px solid saddlebrown;
+  border: 5px solid rebeccapurple;
 }
