@@ -25,10 +25,12 @@ function playerTurn(playerOne, playerTwo, currentPlayer){
   if(!currentPlayer){
     currentPlayer = playerOne;
   }
-  let gridPosition = Number(prompt(`take your move from 1-9 (${currentPlayer.username})`)) - 1;
+  let gridPosition = getGridPosition();
+  console.log(`grid position = ${gridPosition}`);
+  console.log(gameBoard.getGrid());
   while(gameBoard.getGrid()[gridPosition].isOccupied === true){
     alert('enter different position' );
-    gridPosition = Number(prompt(`take your move from 1-9 (${currentPlayer.username})`));
+    gridPosition = getGridPosition();
   }
 
   gameBoard.updateGrid(gridPosition, gameBoard.getGrid(), currentPlayer.userRole);
@@ -131,11 +133,11 @@ const intializeDisplay = (function(){
 
   const cellDivs = document.querySelectorAll('.cell');
 
-  cellDivs.forEach((item) => {
-    item.addEventListener('click', () => {
-      console.log(item.getAttribute('cell'));
-    })
-  })
+  // cellDivs.forEach((item) => {
+  //   item.addEventListener('click', () => {
+  //     console.log(getPosition(item));
+  //   })
+  // })
 
   const xBtn = document.querySelector('.xBtn');
 
@@ -152,6 +154,13 @@ const intializeDisplay = (function(){
   })
 })();
 
-// console.log()
-// cellDivs.appendChild(xMark);
-// gameBoardDiv.appendChild(btnDiv);
+function getGridPosition(){
+  const cellDivs = document.querySelectorAll('.cell');
+  cellDivs.forEach((item) => {
+    item.addEventListener('click', () => {
+      item.getAttribute('cell');
+    })
+  })
+  // console.log();
+  // return item.getAttribute('cell');
+}
