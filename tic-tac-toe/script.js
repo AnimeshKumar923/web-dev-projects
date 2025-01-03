@@ -89,9 +89,8 @@ function winConditionCheck(grid){
 // const playerOne = new Player('ONE', 'x');
 // const playerTwo = new Player('TWO', 'o');
 
-function startGame(){
+function startGame(role){
   let name = prompt('enter name p1');
-  let role = prompt('choose role (x/o)');
   const playerOne = createPlayer(name, role);
 
   let name2 = prompt('enter name p2');
@@ -106,7 +105,7 @@ function startGame(){
 }
 
 // startGame();
-console.log(gameBoard.getGrid());
+// console.log(gameBoard.getGrid());
 // gameBoard.getGrid()[2].isOccupied = true;
 // console.log(gameBoard.getGrid()[2].isOccupied);
 
@@ -114,36 +113,45 @@ console.log(gameBoard.getGrid());
 
 //----------- DOM LOGIC ------------
 
-const gameBoardDiv = document.querySelector('.gameBoard');
-for(let i = 0; i < 9; i++){
-  const cell = document.createElement('div');
-  // cell.innerHTML = `${i + 1}`;
-  cell.className = `cell`;
-  cell.setAttribute('cell', `${i}`);
-  cell.style.border = `1px solid rgb(176, 202, 30)`;
-  gameBoardDiv.appendChild(cell);
-}
+const intializeDisplay = (function(){
+  const gameBoardDiv = document.querySelector('.gameBoard');
+  for(let i = 0; i < 9; i++){
+    const cell = document.createElement('div');
+    // cell.innerHTML = `${i + 1}`;
+    cell.className = `cell`;
+    cell.setAttribute('cell', `${i}`);
+    cell.style.border = `1px solid rgb(176, 202, 30)`;
+    gameBoardDiv.appendChild(cell);
+  }
 
-
-
-const xMark = document.createElement('i');
-xMark.classList.add('fa-solid', 'fa-x', 'fa-2xl');
-
-const cellDivs = document.querySelectorAll('.cell');
-
-cellDivs.forEach((item) => {
-  item.addEventListener('click', () => {
-    console.log(typeof item);
-    
-  })
-})
-
-const xBtn = document.querySelector('.xBtn');
-
-xBtn.addEventListener('click', () => {
   
-  alert(`you've selected X, computer will play O`);
-})
+
+  const xMark = document.createElement('i');
+  xMark.classList.add('fa-solid', 'fa-x', 'fa-2xl');
+
+  const cellDivs = document.querySelectorAll('.cell');
+
+  cellDivs.forEach((item) => {
+    item.addEventListener('click', () => {
+      console.log(item.getAttribute('cell'));
+    })
+  })
+
+  const xBtn = document.querySelector('.xBtn');
+
+  xBtn.addEventListener('click', () => {
+    alert(`you've selected X, computer will play O`);
+    startGame('x');
+  })
+
+  const oBtn = document.querySelector('.oBtn');
+
+  oBtn.addEventListener('click', () => {
+    alert(`you've selected O, computer will play X`);
+    startGame('o');
+  })
+})();
+
 // console.log()
 // cellDivs.appendChild(xMark);
 // gameBoardDiv.appendChild(btnDiv);
