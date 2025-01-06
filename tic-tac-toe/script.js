@@ -1,34 +1,41 @@
 //----------- GAME LOGIC ------------
 
 const gameBoard = (function(){
+  // let gridPosition = null;
+
   const grid = [];
   for (let i = 0; i < 9; i++) {
     grid.push({move: '', isOccupied: false});
   }
-  return {
-    updateGrid: function(index, grid, move){
-      if(!grid[index].isOccupied){
-        grid[index].move = move;
-        grid[index].isOccupied = true;
-      }
-    },
-    getGrid: function(){
-      return grid;
+
+  const updateGrid = (index, grid, move) => {
+    if(!grid[index].isOccupied){
+      grid[index].move = move;
+      grid[index].isOccupied = true;
     }
   }
+  
+  const getGrid = () => {
+    return grid;
+  };
+  
+  return {updateGrid, getGrid};
 })();
 
+// console.log(typeof gameBoard)
+console.log(gameBoard)
 // 'one more round' function; 
 // ask each time if user wants to start the new round or continue existing round; make logic accordingly
 
-function playRound(playerOne, playerTwo, currentPlayer){
-  if(!currentPlayer){
-    currentPlayer = playerOne;
-  }
+function playRound(currentPlayer, gridPosition){
+  // if(!currentPlayer){
+  //   currentPlayer = initializeGame().playerOne;
+  // }
 
-  let gridPosition = getGridPosition();
-  console.log(`grid position = ${gridPosition}`);
+  // console.log(`grid position = ${gridPosition}`);
   console.log(gameBoard.getGrid());
+
+
   while(gameBoard.getGrid()[gridPosition].isOccupied === true){
     alert('enter different position' );
     gridPosition = getGridPosition();
@@ -93,7 +100,7 @@ function winConditionCheck(grid){
 // const playerOne = new Player('ONE', 'x');
 // const playerTwo = new Player('TWO', 'o');
 
-function startGame(role){
+const initializeGame = (role) => {
   let name = prompt('enter name p1');
   const playerOne = createPlayer(name, role);
 
@@ -104,11 +111,13 @@ function startGame(role){
     role2 = 'x';
   }
   const playerTwo = createPlayer(name2, role2);
-  const winner = playRound(playerOne, playerTwo);
-  alert(`${winner.toUpperCase()} WINS!`);
+  // const winner = playRound(playerOne, playerTwo);
+  // alert(`${winner.toUpperCase()} WINS!`);
+  // console.log(playerOne, playerTwo);
+  return {playerOne, playerTwo};
 }
 
-// startGame();
+// initializeGame();
 // console.log(gameBoard.getGrid());
 // gameBoard.getGrid()[2].isOccupied = true;
 // console.log(gameBoard.getGrid()[2].isOccupied);
@@ -117,54 +126,47 @@ function startGame(role){
 
 //----------- DOM LOGIC ------------
 
-const intializeDisplay = (function(){
-  const gameBoardDiv = document.querySelector('.gameBoard');
-  for(let i = 0; i < 9; i++){
-    const cell = document.createElement('div');
-    // cell.innerHTML = `${i + 1}`;
-    cell.className = `cell`;
-    cell.setAttribute('cell', `${i}`);
-    cell.style.border = `1px solid rgb(176, 202, 30)`;
-    gameBoardDiv.appendChild(cell);
-  }
-
-  
-
-  const xMark = document.createElement('i');
-  xMark.classList.add('fa-solid', 'fa-x', 'fa-2xl');
-
-  const cellDivs = document.querySelectorAll('.cell');
-
-  // cellDivs.forEach((item) => {
-  //   item.addEventListener('click', () => {
-  //     console.log(getPosition(item));
-  //   })
-  // })
-
+const addEventListenersToGame = () => {
+  // add form to get user input for better UX later on
   const xBtn = document.querySelector('.xBtn');
-
   xBtn.addEventListener('click', () => {
     alert(`you've selected X, computer will play O`);
-    startGame('x');
+    initializeGame('x');
   })
 
   const oBtn = document.querySelector('.oBtn');
-
   oBtn.addEventListener('click', () => {
     alert(`you've selected O, computer will play X`);
-    startGame('o');
+    initializeGame('o');
   })
-})();
 
-function getGridPosition(){
-  const cellDivs = document.querySelectorAll('.cell');
-  cellDivs.forEach((item) => {
-    item.addEventListener('click', () => {
-      item.getAttribute('cell');
+  getGridPosition();
+}
+
+const getGridPosition = () => {
+  document.querySelectorAll('.cell').forEach(cell => {
+    cell.addEventListener('click', (e) => {
+      playRound(initializeGame().playerOne, cell.getAttribute('cell'));
     })
   })
-  // console.log();
-  return item.getAttribute('cell');
 }
+
+const initializeDisplay = (function(){
+  addEventListenersToGame();
+})();
+
+const declareWinner = () => {
+
+}
+// function getGridPosition(){
+//   const cellDivs = document.querySelectorAll('.cell');
+//   cellDivs.forEach((item) => {
+//     item.addEventListener('click', () => {
+//       item.getAttribute('cell');
+//     })
+//   })
+//   // console.log();
+//   return item.getAttribute('cell');
+// }
 
 // function to display result using DOM manipulation; make the whole element using DOM only
