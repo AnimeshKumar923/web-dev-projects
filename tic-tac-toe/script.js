@@ -21,10 +21,11 @@ const gameBoard = (function(){
 // 'one more round' function; 
 // ask each time if user wants to start the new round or continue existing round; make logic accordingly
 
-function playerTurn(playerOne, playerTwo, currentPlayer){
+function playRound(playerOne, playerTwo, currentPlayer){
   if(!currentPlayer){
     currentPlayer = playerOne;
   }
+
   let gridPosition = getGridPosition();
   console.log(`grid position = ${gridPosition}`);
   console.log(gameBoard.getGrid());
@@ -36,11 +37,12 @@ function playerTurn(playerOne, playerTwo, currentPlayer){
   gameBoard.updateGrid(gridPosition, gameBoard.getGrid(), currentPlayer.userRole);
   let checkWin = winConditionCheck(gameBoard.getGrid());
   if(checkWin.didWin){
-    return checkWin.winUser;
+    return checkWin.user;
   }
+
   currentPlayer = currentPlayer === playerOne ? playerTwo : playerOne;
   if(gridsFilled(gameBoard.getGrid()) === false){  // check if grid filled;
-    return playerTurn(playerOne, playerTwo, currentPlayer);
+    return playRound(playerOne, playerTwo, currentPlayer);
   }
 }
 
@@ -69,7 +71,7 @@ function winConditionCheck(grid){
       grid[item[1]].move === xVar &&
       grid[item[2]].move === xVar
     ) {
-      return { didWin: true, winUser: xVar };
+      return { didWin: true, user: xVar };
     }
   
     if (
@@ -77,12 +79,12 @@ function winConditionCheck(grid){
       grid[item[1]].move === oVar &&
       grid[item[2]].move === oVar
     ) {
-      return { didWin: true, winUser: oVar };
+      return { didWin: true, user: oVar };
     }
   }
 
   if (grid.every(cell => cell.isOccupied)) {
-    return { didWin: true, winUser: 'draw' };
+    return { didWin: true, user: 'draw' };
   }
     
   return false;
@@ -102,7 +104,7 @@ function startGame(role){
     role2 = 'x';
   }
   const playerTwo = createPlayer(name2, role2);
-  const winner = playerTurn(playerOne, playerTwo);
+  const winner = playRound(playerOne, playerTwo);
   alert(`${winner.toUpperCase()} WINS!`);
 }
 
@@ -162,5 +164,7 @@ function getGridPosition(){
     })
   })
   // console.log();
-  // return item.getAttribute('cell');
+  return item.getAttribute('cell');
 }
+
+// function to display result using DOM manipulation; make the whole element using DOM only
