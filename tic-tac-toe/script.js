@@ -62,6 +62,7 @@ function playRound(currentPlayer, cell){
     }
     startGame.xWinCount++;
     resetBoard();
+    return;
     // check for BEST OF 3 ROUNDS; set gameOver = true;
     // if won by any one, start new round
     // after each round check for overall win from out of 3 rounds; 
@@ -122,6 +123,7 @@ const computerMove = () => {
 
     startGame.oWinCount++;
     resetBoard();
+    return;
   }
 }
 
@@ -152,7 +154,8 @@ function winConditionCheck(grid){
   }
 
   if (grid.every(cell => cell.isOccupied)) {
-    alert('ROUND DRAW!')
+    alert('ROUND DRAW!');
+    return;
   }
     
   return false;
@@ -169,7 +172,8 @@ const addEventListenersToGame = () => {
 }
 
 
-// make it iife before final execution of the program
+// make it iife before final execution of the program;
+// UPDATE: made iife
 const startGame = (() => {
   let rounds = 0;
   let player1 = 'x';
@@ -182,9 +186,7 @@ const startGame = (() => {
 
   const updateRounds = () => { rounds++; roundComplete = false};
   
-  const setGameOver = (state) => { gameOver = state; };
-  
-  return {updateRounds, setGameOver, player1, player2, gameOver, rounds, roundComplete, xWinCount, oWinCount};
+  return {updateRounds, player1, player2, gameOver, rounds, roundComplete, xWinCount, oWinCount};
 })();
 
 
