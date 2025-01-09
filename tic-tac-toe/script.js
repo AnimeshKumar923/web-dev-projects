@@ -27,7 +27,8 @@ console.log(gameBoard)
 
 function playRound(currentPlayer, cell){
   // console.log(`grid position = ${gridPosition}`);
-  let gridPosition = cell.getAttribute('cell')
+  let gridPosition = cell.getAttribute('cell');
+
   console.log(cell.getAttribute('cell'));
   console.log(gameBoard.getGrid());
   console.log(startGame.player1);
@@ -40,51 +41,92 @@ function playRound(currentPlayer, cell){
     return;
   }
 
-  if(gameBoard.getGrid()[gridPosition].isOccupied === true){
+  if(gameBoard.getGrid()[gridPosition].isOccupied){
     alert('position already occupied');
     return;
   }
   console.log(gameBoard.getGrid());
 
   gameBoard.updateGrid(gridPosition, gameBoard.getGrid(), currentPlayer);
-  cell.textContent = 'X';  
+  cell.textContent = 'X';
   let checkWin = winConditionCheck(gameBoard.getGrid());
   if(checkWin.didWin){
     alert(`${checkWin.user} WON!`) ;
+    startGame.roundComplete = true;
+    startGame.updateRounds();
+
+    if(startGame.xWinCount > 1){
+      alert('YOU won the game!');
+      startGame.gameOver = true;
+      return;
+    }
+    startGame.xWinCount++;
+    resetBoard();
+    // check for BEST OF 3 ROUNDS; set gameOver = true;
+    // if won by any one, start new round
+    // after each round check for overall win from out of 3 rounds; 
   }
 
-  computerMove();
-  
-  
-  // currentPlayer = currentPlayer === startGame.playerOne ? startGame.playerTwo : startGame.playerOne;
-  // if(gridsFilled(gameBoard.getGrid()) === false){  // check if grid filled;
-  //   return playRound(playerOne, playerTwo, currentPlayer);
-  // }
+  if(!startGame.roundComplete){
+    computerMove();
+  }
+
+}
+
+const resetBoard = () => {
+  startGame.roundComplete = false;
+
+  document.querySelectorAll('.cell').forEach(cell => {
+    cell.textContent = '';
+  })
+
+  gameBoard.getGrid().forEach(item => {
+    item.move = '';
+    item.isOccupied = false;
+  });
 }
 
 const computerMove = () => {
   let randomNum = getRandomNumber();
-  if(gameBoard.getGrid()[randomNum].isOccupied === true){
-    getRandomNumber()
+  while(gameBoard.getGrid()[randomNum].isOccupied){
+    randomNum = getRandomNumber();
   }
+  
+  if(startGame.gameOver){
+    return;
+  }
+  
+  if(gameBoard.getGrid()[randomNum].isOccupied){
+    alert('position already occupied');
+    return;
+  }
+  console.log(gameBoard.getGrid());
+  
   gameBoard.updateGrid(randomNum, gameBoard.getGrid(), 'o');
 
+  const cells = document.querySelectorAll('.cell');
+  cells[randomNum].textContent = 'O';
+  
+  let checkWin = winConditionCheck(gameBoard.getGrid());
+  if(checkWin.didWin){
+    alert(`${checkWin.user} WON!`) ;
+    startGame.roundComplete = true;
+    startGame.updateRounds();
+    startGame.oWinCount++;
+
+    if(startGame.oWinCount > 1){
+      alert('COMPUTER won the game!');
+      startGame.gameOver = true;
+      return;
+    }
+
+    startGame.oWinCount++;
+    resetBoard();
+  }
 }
 
 const getRandomNumber = () => Math.floor(Math.random() * 9);
-// function gridsFilled(grid){
-//   for (let i = 0; i < grid.length; i++) {
-//     if(grid[i].isOccupied === false){
-//       return false;
-//     }
-//   }
-// }
 
-// function createPlayer(name, role){
-//   const username = name;
-//   const userRole = role
-//   return {username, userRole};
-// }
 
 function winConditionCheck(grid){
   let xVar = 'x';
@@ -115,9 +157,6 @@ function winConditionCheck(grid){
     
   return false;
 }
-// winConditionCheck();
-// const playerOne = new Player('ONE', 'x');
-// const playerTwo = new Player('TWO', 'o');
 
 const addEventListenersToGame = () => {
   // add form to get user input for better UX later on
@@ -136,22 +175,18 @@ const startGame = (() => {
   let player1 = 'x';
   let player2 = 'o';
   let gameOver = false;
+  let roundComplete = false;
+  let xWinCount = 0;
+  let oWinCount = 0;
   addEventListenersToGame();
 
-  const updateRounds = () => { rounds++; };
+  const updateRounds = () => { rounds++; roundComplete = false};
   
   const setGameOver = (state) => { gameOver = state; };
   
-  return {updateRounds, setGameOver, player1, player2, gameOver, rounds};
+  return {updateRounds, setGameOver, player1, player2, gameOver, rounds, roundComplete, xWinCount, oWinCount};
 })();
 
-// const initializeDisplay = (function(){
-//   addEventListenersToGame();
-// })();
 
 
-// 
-// function to display result using DOM manipulation; make the whole element using DOM only
 
-// startGame();
-// console.log(createPlayer('a','xoxo'));
