@@ -55,10 +55,12 @@ function playRound(currentPlayer, cell){
     startGame.roundComplete = true;
     startGame.updateRounds();
     startGame.xWinCount++;
+    updateScoreDOM();
 
     if(startGame.xWinCount > 1){
       alert(`${startGame.player1Name} WON THE GAME!`);
       startGame.gameOver = true;
+      updateScoreDOM();
       return;
     }
     resetBoard();
@@ -114,10 +116,12 @@ const computerMove = () => {
     startGame.roundComplete = true;
     startGame.updateRounds();
     startGame.oWinCount++;
+    updateScoreDOM();
 
     if(startGame.oWinCount > 1){
       alert('COMPUTER won the game!');
       startGame.gameOver = true;
+      updateScoreDOM();
       return;
     }
 
@@ -154,6 +158,7 @@ function winConditionCheck(grid){
 
   if (grid.every(cell => cell.isOccupied)) {
     alert('ROUND DRAW!');
+    resetBoard();
     return { didWin: false, user: null };
   }
     
@@ -202,7 +207,6 @@ const startGame = (() => {
   let roundComplete = false;
   let xWinCount = 0;
   let oWinCount = 0;
-  // let player1Name = '';
   const player1Name = getUserName();
 
   document.querySelector('.restart').addEventListener('click', (e) => {
@@ -215,12 +219,8 @@ const startGame = (() => {
 
 
 const updateScoreDOM = () => {
-  const resultDiv = document.querySelector('.result');
-  const player1Score = document.createElement('div');
-  player1Score.textContent = `${startGame.player1Name}: ${startGame.xWinCount}`;
-  const computerScore = document.createElement('div');
+  const playerScore = document.querySelector('.playerScore');
+  const computerScore = document.querySelector('.computerScore');
+  playerScore.textContent = `${startGame.player1Name}: ${startGame.xWinCount}`;
   computerScore.textContent = `Computer: ${startGame.oWinCount}`;
-
-  resultDiv.appendChild(player1Score);
-  resultDiv.appendChild(computerScore);
 };
