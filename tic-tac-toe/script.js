@@ -8,7 +8,7 @@ const gameBoard = (function(){
     grid.push({move: '', isOccupied: false});
   }
 
-  const updateGrid = (index, grid, move) => {
+  const updateGrid = (index, move) => {
     if(!grid[index].isOccupied){
       grid[index].move = move;
       grid[index].isOccupied = true;
@@ -47,20 +47,20 @@ function playRound(currentPlayer, cell){
   }
   console.log(gameBoard.getGrid());
 
-  gameBoard.updateGrid(gridPosition, gameBoard.getGrid(), currentPlayer);
+  gameBoard.updateGrid(gridPosition, currentPlayer);
   cell.textContent = 'X';
   let checkWin = winConditionCheck(gameBoard.getGrid());
   if(checkWin.didWin){
-    alert(`${checkWin.user} WON!`) ;
+    alert(`${startGame.player1Name} WON the round!`) ;
     startGame.roundComplete = true;
     startGame.updateRounds();
+    startGame.xWinCount++;
 
     if(startGame.xWinCount > 1){
-      alert('YOU won the game!');
+      alert(`${startGame.player1Name} WON THE GAME!`);
       startGame.gameOver = true;
       return;
     }
-    startGame.xWinCount++;
     resetBoard();
     return;
     // check for BEST OF 3 ROUNDS; set gameOver = true;
@@ -121,7 +121,6 @@ const computerMove = () => {
       return;
     }
 
-    startGame.oWinCount++;
     resetBoard();
     return;
   }
@@ -155,15 +154,14 @@ function winConditionCheck(grid){
 
   if (grid.every(cell => cell.isOccupied)) {
     alert('ROUND DRAW!');
-    return;
+    return { didWin: false, user: null };
   }
     
-  return false;
+  return { didWin: false, user: null };;
 }
 
-const addEventListenersToGame = () => {
-  // add form to get user input for better UX later on
-
+// add form to get user input for better UX later on
+const addEventListenersToCell = () => {
   document.querySelectorAll('.cell').forEach(cell => {
     cell.addEventListener('click', (e) => {
       playRound(startGame.player1, e.target);
@@ -171,24 +169,58 @@ const addEventListenersToGame = () => {
   })
 }
 
+const getPlayer1Name = () => {
+  document.querySelector('#playerForm').addEventListener('submit', () => {
+    document.querySelector('#player1').value;
+  })
+}
+
+const getUserName = () => {
+  document.querySelector('#playerForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    startGame.player1Name = document.querySelector('#player1').value;
+
+    if (startGame.player1Name.trim()) {
+      alert(`${startGame.player1Name} will play X`);
+      document.querySelector('#player1').value = '';
+      updateScoreDOM();
+      addEventListenersToCell(); // Call the function after capturing the name
+    } else {
+      alert('Please enter a valid name!');
+      document.querySelector('#player1').value = '';
+    }
+  });
+}
 
 // make it iife before final execution of the program;
 // UPDATE: made iife
 const startGame = (() => {
-  let rounds = 0;
+  // let rounds = 0;
   let player1 = 'x';
   let player2 = 'o';
   let gameOver = false;
   let roundComplete = false;
   let xWinCount = 0;
   let oWinCount = 0;
-  addEventListenersToGame();
+  // let player1Name = '';
+  const player1Name = getUserName();
 
-  const updateRounds = () => { rounds++; roundComplete = false};
-  
-  return {updateRounds, player1, player2, gameOver, rounds, roundComplete, xWinCount, oWinCount};
+  document.querySelector('.restart').addEventListener('click', (e) => {
+    location.reload();
+  })
+
+  const updateRounds = () => { roundComplete = false};
+  return {updateRounds, player1, player2, gameOver, roundComplete, xWinCount, oWinCount, player1Name};
 })();
 
 
+const updateScoreDOM = () => {
+  const resultDiv = document.querySelector('.result');
+  const player1Score = document.createElement('div');
+  player1Score.textContent = `${startGame.player1Name}: ${startGame.xWinCount}`;
+  const computerScore = document.createElement('div');
+  computerScore.textContent = `Computer: ${startGame.oWinCount}`;
 
-
+  resultDiv.appendChild(player1Score);
+  resultDiv.appendChild(computerScore);
+};
