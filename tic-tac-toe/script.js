@@ -105,7 +105,7 @@ const computerMove = () => {
   }
   console.log(gameBoard.getGrid());
   
-  gameBoard.updateGrid(randomNum, gameBoard.getGrid(), 'o');
+  gameBoard.updateGrid(randomNum, 'o');
 
   const cells = document.querySelectorAll('.cell');
   cells[randomNum].textContent = 'O';
