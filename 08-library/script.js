@@ -1,39 +1,61 @@
-// library object
-
-
 const myLibrary = [];
-// console.log(myLibrary.length)
-/**
- * Constructor method to initialize each book object created in the code 
- * @param {string} title Book's title
- * @param {string} author Author's name
- * @param {number} pages Total number of pages in book
- * @param {number} year Publication year
- */
-function Book(title, author, pages, year, isRead) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.year = year;
-  this.isDisplayed = false;
-  this.isRead = isRead;
+
+class Book{
+  /**
+   * Constructor method to initialize each book object created in the code 
+   * @param {string} title Book's title
+   * @param {string} author Author's name
+   * @param {number} pages Total number of pages in book
+   * @param {number} year Publication year
+   */
+  constructor(title, author, pages, year, isRead) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.year = year;
+    this.isDisplayed = false;
+    this.isRead = isRead;
+  }
+
+  toggleReadStatus(){
+    this.isRead = !this.isRead;
+  }
 }
 
-Book.prototype.toggleReadStatus = function(){
-  this.isRead = !this.isRead;
-};
+// function Book(title, author, pages, year, isRead) {
+//   this.title = title;
+//   this.author = author;
+//   this.pages = pages;
+//   this.year = year;
+//   this.isDisplayed = false;
+//   this.isRead = isRead;
+// }
 
-function addBook() {
-  let book = new Book('ONE', 'Kafka', 278, 2000, false);
-  let b1 = new Book('TWO', 'Rumi', 874, 300, false);
-  let b2 = new Book('THREE', 'Marcus', 547, 2001, false);
-  let b3 = new Book('FOUR', 'Confucius', 879, 2020, false);
+// Book.prototype.toggleReadStatus = function(){
+//   this.isRead = !this.isRead;
+// };
+
+// function addSampleBooks() {
+//   let book = new Book('ONE', 'Kafka', 278, 2000, false);
+//   let b1 = new Book('TWO', 'Rumi', 874, 300, false);
+//   let b2 = new Book('THREE', 'Marcus', 547, 2001, false);
+//   let b3 = new Book('FOUR', 'Confucius', 879, 2020, false);
+//   myLibrary.push(book);
+//   myLibrary.push(b1);
+//   myLibrary.push(b2);
+//   myLibrary.push(b3);
+// }
+function addSampleBooks() {
+  let book = new Book('ONE', 'Kafka', 278, 2000);
+  let b1 = new Book('TWO', 'Rumi', 874, 300);
+  let b2 = new Book('THREE', 'Marcus', 547, 2001);
+  let b3 = new Book('FOUR', 'Confucius', 879, 2020);
   myLibrary.push(book);
   myLibrary.push(b1);
   myLibrary.push(b2);
   myLibrary.push(b3);
 }
-addBook();
+addSampleBooks();
 
 
 // display button handler
