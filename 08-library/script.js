@@ -8,12 +8,12 @@ class Book{
    * @param {number} pages Total number of pages in book
    * @param {number} year Publication year
    */
-  constructor(title, author, pages, year, isRead) {
+  constructor(title, author, pages, year, isRead = false) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.year = year;
-    this.isDisplayed = false;
+    // this.isDisplayed = false;
     this.isRead = isRead;
   }
 
@@ -45,17 +45,16 @@ class Book{
 //   myLibrary.push(b2);
 //   myLibrary.push(b3);
 // }
-function addSampleBooks() {
-  let book = new Book('ONE', 'Kafka', 278, 2000);
-  let b1 = new Book('TWO', 'Rumi', 874, 300);
-  let b2 = new Book('THREE', 'Marcus', 547, 2001);
-  let b3 = new Book('FOUR', 'Confucius', 879, 2020);
-  myLibrary.push(book);
-  myLibrary.push(b1);
-  myLibrary.push(b2);
-  myLibrary.push(b3);
-}
-addSampleBooks();
+
+let book = new Book('ONE', 'Kafka', 278, 2000);
+let b1 = new Book('TWO', 'Rumi', 874, 300);
+let b2 = new Book('THREE', 'Marcus', 547, 2001);
+let b3 = new Book('FOUR', 'Confucius', 879, 2020);
+myLibrary.push(book);
+myLibrary.push(b1);
+myLibrary.push(b2);
+myLibrary.push(b3);
+
 
 
 // display button handler
@@ -64,9 +63,7 @@ displayBtn.addEventListener('click', displayBook)
 function displayBook(){
   clearDisplay();
   myLibrary.forEach((item, index) => {
-    if(!item.isDisplayed){
-      createDisplayCard(item, index);
-    }
+    createDisplayCard(item, index);
   });
 }
 
@@ -170,7 +167,7 @@ function createDisplayCard(item, index){
 
 
   // display flag
-  item.isDisplayed = true;
+  // item.isDisplayed = true;
 
   // remove book button
   const removeBookBtn = document.createElement('button');
@@ -182,10 +179,8 @@ function createDisplayCard(item, index){
   removeBookBtn.addEventListener('click', () => {
     let index = removeBookBtn.getAttribute('book-index');
     myLibrary.splice(index, 1);
-    alert(`Book removed! Use 'Display Books' button to see the updated list`);
-    myLibrary.forEach((item) => {
-      item.isDisplayed = false;
-    })
+    alert(`Book removed!`);
+    displayBook();
     // clearDisplay();
     // createDisplayCard();
   });
@@ -195,3 +190,5 @@ function clearDisplay(){
   const display = document.querySelector('.display');
   display.innerHTML = '';
 }
+
+displayBook();
