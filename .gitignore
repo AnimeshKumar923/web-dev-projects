@@ -13,3 +13,6 @@ out/
 # Ignore custom configs
 *.config.js
 *.config.ts
+
+# Node modules
+node_modules
