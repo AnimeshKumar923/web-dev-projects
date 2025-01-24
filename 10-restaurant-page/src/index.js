@@ -1,4 +1,13 @@
-import restaurantImg from "./restaurant.png";
-import { homepage } from "./homepage.js"
+// import restaurantImg from "./restaurant.png";
+import { loadHomepage } from './homepage.js'
+import { loadMenu } from './menu.js'
 
-document.querySelector()
+loadHomepage();
+document.querySelector('.homeBtn').addEventListener('click', () => {
+  document.querySelector('#content').innerHTML = '';
+  loadHomepage();
+})
+document.querySelector('.menuBtn').addEventListener('click', () => {
+  document.querySelector('#content').innerHTML = '';
+  loadMenu();
+})
