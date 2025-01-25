@@ -4,7 +4,7 @@ export const loadMenu = () => {
   const menuDiv = document.createElement('div');
   menuDiv.className = 'menu';
   menuDiv.innerHTML = `
-  <h1>Our Menu</h1>
+  <h2>Our Menu</h2>
   <p>Explore our delicious offerings, crafted with love and fresh ingredients:</p>
   <ul>
     <li><strong>Appetizers:</strong> Bruschetta, Caesar Salad, Garlic Bread</li>
